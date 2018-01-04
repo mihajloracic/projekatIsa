@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+//dodati anotaciju configuration kad bude trebalo na heroku
 public class DataBaseConfig {
 /*
     @Value("postgres://localhost:5432/postgres")
