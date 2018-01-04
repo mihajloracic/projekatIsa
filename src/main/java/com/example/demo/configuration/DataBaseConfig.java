@@ -12,10 +12,9 @@ import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@Configuration
 public class DataBaseConfig {
-
-    @Value("postgres://uoxsqoldyunplm:f7fb9c9b6b3380880d516b7ab7ac1e09eedd3ba66bff9085255022ab54ab4803@ec2-184-73-240-228.compute-1.amazonaws.com:5432/dcbbld1uo8r77o")
+/*
+    @Value("postgres://localhost:5432/postgres")
     private String databaseUrl;
 
     @Bean
@@ -24,8 +23,8 @@ public class DataBaseConfig {
 
         URI dbUri = new URI(databaseUrl);
 
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
+        String username = "postgres";
+        String password = "root";
         String dbUrl = String.format("jdbc:postgresql://%s:%d%s?sslmode=require", dbUri.getHost(), dbUri.getPort(), dbUri.getPath());
 
         BasicDataSource basicDataSource = new BasicDataSource();
@@ -34,5 +33,5 @@ public class DataBaseConfig {
         basicDataSource.setPassword(password);
 
         return basicDataSource;
-    }
+    }*/
 }
