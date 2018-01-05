@@ -1,22 +1,19 @@
 package com.example.demo.domain.entity;
 
-
 import javax.annotation.Nullable;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-@Table(name = "props")
-public class Props implements Serializable{
+@Table(name = "officialprops")
+public class OfficialProps implements Serializable {
 
     private long id;
     private String name;
     private String description;
     private Date expirationDate;
     private String imageUrl;
-    private boolean approved;
     private User userCreated;
 
 
@@ -30,14 +27,13 @@ public class Props implements Serializable{
         this.userCreated = userCreated;
     }
 
-    public Props() {
+    public OfficialProps() {
     }
 
-    public Props(String name, String description, String imageUrl, Date date) {
+    public OfficialProps(String name, String description, String imageUrl, Date date) {
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.approved = false;//approve administrator
         this.expirationDate = date;
     }
     @Id
@@ -82,13 +78,6 @@ public class Props implements Serializable{
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    @Column(name = "approved")
-    public boolean isApproved() {
-        return approved;
-    }
-
-    public void setApproved(boolean approved) {
-        this.approved = approved;
-    }
 
 }
+
