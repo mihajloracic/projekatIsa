@@ -16,6 +16,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/*
+Security klasa koja presrece zahtjeve, uzima kredencijale iz JWT i postavlja rezultat u security kontekst, iz kog se kasnije getuju inf
+ */
+
 public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
   @Value("${cerberus.token.header}")

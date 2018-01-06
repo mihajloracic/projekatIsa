@@ -43,7 +43,8 @@ public class User extends DomainBase {
     this.id = id;
   }
 
-  @Column(name = "username")
+
+  @Column(name = "username", unique = true)
   public String getUsername() {
     return this.username;
   }
@@ -61,7 +62,7 @@ public class User extends DomainBase {
     this.password = password;
   }
 
-  @Column(name = "email")
+  @Column(name = "email", unique = true)
   public String getEmail() {
     return this.email;
   }

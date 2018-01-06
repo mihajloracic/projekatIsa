@@ -44,7 +44,7 @@ public class OfficialPropsController {
             return ResponseEntity.badRequest().body(null);
         }
         if(user.getAuthorities().contains(null)){//TODO proveriti da li je user admin
-
+            //SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ADMIN")));
         }
         props.setUserCreated(userRepository.findByUsernameIgnoreCase(username));
 
