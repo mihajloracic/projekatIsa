@@ -2,17 +2,11 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.entity.Props;
 import com.example.demo.domain.entity.User;
-import com.example.demo.model.security.CerberusUser;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.service.impl.PropsService;
-import com.example.demo.security.TokenUtils;
-import com.example.demo.service.impl.UserDetailsServiceImpl;
 import com.example.demo.service.impl.UserGetterService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,14 +26,14 @@ public class PropsController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addProps(HttpServletRequest request,@RequestBody Props props) throws NotFoundException {
-        props.setUserCreated(userGetterService.aproveProps(request));
+        props.setUserCreated(userGetterService.getLoggedInUser(request));
         propsService.insertProps(props);
         return ResponseEntity.ok(props);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> updaterops(HttpServletRequest request,@RequestBody Props props) throws NotFoundException {
-        User u = userGetterService.aproveProps(request);
+        User u = userGetterService.getLoggedInUser(request);
         //TODO provera da li je taj user kreirao entite koji mennja
         propsService.insertProps(props);
         return ResponseEntity.ok(props);
@@ -59,7 +53,7 @@ public class PropsController {
 
     @RequestMapping(method = RequestMethod.POST,value = "/admin")
     public ResponseEntity<?> aproveProps(HttpServletRequest request,@RequestBody Props props) throws NotFoundException {
-        userGetterService.aproveProps(request);
+        userGetterService.getLoggedInUser(request);
         props = propsService.updateProps(props);
         return ResponseEntity.ok(props);
     }

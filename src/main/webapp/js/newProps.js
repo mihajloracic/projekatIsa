@@ -1,7 +1,10 @@
+
 $(document).ready(function () {
 });
 $("#submit").click(function () {
 
+    data = formToJSON($("#props_name").val(),$("#props_description").val(),$("#props_expiration_date").val());
+    settings.data = data;
     $.ajax(settings).done(function (response) {
         console.log(response);
     });
@@ -16,12 +19,11 @@ var settings = {
         "content-type": "application/json",
     },
     "processData": false,
-    "data": formToJSON($("#props_name").val(),$("#props_description").val(),$("#props_expiration_date").val())
+    "data": data
 }
 function formToJSON(name,description,date) {
     return JSON.stringify({
         "name" : name,
-        "description" : description,
-        "expirationDate" : date
+
     });
 }

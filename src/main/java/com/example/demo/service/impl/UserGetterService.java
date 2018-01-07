@@ -31,7 +31,7 @@ public class UserGetterService {
     @Autowired
     private TokenUtils tokenUtils;
 
-    public User aproveProps(HttpServletRequest request) throws NotFoundException {
+    public User getLoggedInUser(HttpServletRequest request) throws NotFoundException {
         String token = request.getHeader(this.tokenHeader);
         String username = this.tokenUtils.getUsernameFromToken(token);
         CerberusUser user = (CerberusUser) this.userDetailsService.loadUserByUsername(username);
