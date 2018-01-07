@@ -47,6 +47,7 @@ public class PropsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllApprovedProps() {
+
         return ResponseEntity.ok(propsService.getAllAprovedProps());
     }
 

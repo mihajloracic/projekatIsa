@@ -37,7 +37,6 @@ public class UserGetterService {
         CerberusUser user = (CerberusUser) this.userDetailsService.loadUserByUsername(username);
         if (this.tokenUtils.canTokenBeRefreshed(token, user.getLastPasswordReset())) {
         } else {
-            //treba da trovuje execption
             throw new NotFoundException("Wrong email/password!");
         }
         return userRepository.findByUsernameIgnoreCase(username);

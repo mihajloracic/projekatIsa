@@ -12,6 +12,7 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,13 +29,12 @@ public class OfficialPropsController {
     @Autowired
     OfficialPropsService officialPropsService;
 
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addProps(HttpServletRequest request, @RequestBody OfficialProps props) throws NotFoundException {
         User user = userGetterService.aproveProps(request);
         //TODO provera da li je user admin
         props.setUserCreated(user);
-
         officialPropsService.insertProps(props);
         return ResponseEntity.ok(props);
     }
