@@ -20,11 +20,8 @@ public class VenueController  {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllVenues(){
-
         return  ResponseEntity.ok(venueService.findAll());
-
     }
-
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addVenue(@RequestBody Venue v){
