@@ -3,6 +3,7 @@ package com.example.demo.domain.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "venue")
@@ -21,6 +22,9 @@ public class Venue implements Serializable{
 
     @Column(name="description")
     private String description;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "venue")
+    private List<Hall> halls;
 
     public long getId() {
         return id;
