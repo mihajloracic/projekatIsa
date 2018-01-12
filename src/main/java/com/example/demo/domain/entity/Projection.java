@@ -7,14 +7,10 @@ import java.sql.Time;
 @Table(name = "projection")
 public class Projection {
 
-    @Column
-    private Time time;
-
     @Id
-
-
-    @ManyToOne
-    private Hall hall;
+    @Column(name = "id", columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
 //    @ManyToOne
 //    private Film film;
