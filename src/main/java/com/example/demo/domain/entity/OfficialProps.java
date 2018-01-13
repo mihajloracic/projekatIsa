@@ -1,6 +1,6 @@
 package com.example.demo.domain.entity;
 
-import javax.annotation.Nullable;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
@@ -18,7 +18,6 @@ public class OfficialProps implements Serializable {
 
 
     @ManyToOne
-    @Nullable
     public User getUserCreated() {
         return userCreated;
     }

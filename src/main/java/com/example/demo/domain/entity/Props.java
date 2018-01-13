@@ -1,7 +1,6 @@
 package com.example.demo.domain.entity;
 
 
-import javax.annotation.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -21,7 +20,6 @@ public class Props implements Serializable{
 
 
     @ManyToOne
-    @Nullable
     public User getUserCreated() {
         return userCreated;
     }
