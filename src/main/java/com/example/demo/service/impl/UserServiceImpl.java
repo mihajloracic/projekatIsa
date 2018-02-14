@@ -1,7 +1,9 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.domain.entity.User;
+import com.example.demo.domain.entity.VerificationToken;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.repository.VerificationTokenRepository;
 import com.example.demo.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,9 @@ public class UserServiceImpl  implements UserService{
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    VerificationTokenRepository tokenRepository;
+
     @Override
     public User registerUser(User user) {
 
@@ -30,5 +35,16 @@ public class UserServiceImpl  implements UserService{
         return userRepository.save(user);
     }
 
+    @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
+//    public void createVerificationToken(User user, String token) {
+//
+//        tokenRepository.save(new VerificationTokenService(token, user));
+//    }
+
 
 }
+

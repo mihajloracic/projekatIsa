@@ -6,6 +6,8 @@ public interface UserService {
 
     User registerUser(User user);
 
-//    User loginUser(User user);
+//    void createVerificationToken(User user, String token);
+
+    User saveUser(User user);
 
 }
