@@ -10,9 +10,11 @@ import java.util.List;
 @Service
 public class VenueService {
 
-    @Autowired
-    VenueRepository venueRepository;
+    private VenueRepository venueRepository;
 
+    public VenueService(VenueRepository venueRepository){
+        this.venueRepository = venueRepository;
+    }
 
     public List<Venue> findAll(){
         return venueRepository.findAll();
