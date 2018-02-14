@@ -1,29 +1,25 @@
 
-$(document).ready(function () {
-});
-$("#submit").click(function () {
+var postApp = angular.module('postApp', []);
+postApp.controller('postController', function($scope, $http) {
+    $scope.fileSelected = function (element) {
+        var myFileSelected = element.files[0];
+    };
+    this.submitForm = function(file, uploadUrl){
+        var form = new FormData();
+        form.append('file', file);
+        form.append("name", $scope.name);
+        form.append("description", $scope.description);
+        form.append("date", $scope.expirationDate);
 
-    data = formToJSON($("#props_name").val(),$("#props_description").val(),$("#props_expiration_date").val());
-    settings.data = data;
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-    });
-});
-var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://localhost:8096/api/props/",
-    "method": "POST",
-    "headers": {
-        "x-auth-token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxNTE3MjcyNDIyMiwiZXhwIjoxNTE1Nzc3NTI0fQ.0tTNwcoOefwFdffEftRgLhkEe4JqzpnXkLt1EJVJW17nduu6zLFt4iVyshtvKb7PQG2g62Uta7BH6SXqRb3RKA",
-        "content-type": "application/json",
-    },
-    "processData": false,
-    "data": data
-}
-function formToJSON(name,description,date) {
-    return JSON.stringify({
-        "name" : name,
 
-    });
-}
+        $http.post("/api/props/", form, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined,
+                "x-auth-token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxNjgzOTQxODMwNywiZXhwIjoxNTE3NDQ0MjE4fQ.7_JbBQDusHTJbDgqtg8YB9hPg7qpQIzYD2lXjaR8SG-lJkbjNg6IeQBhwbC62YqKKrAIHoQYOyImtxE2yy0ekg"}
+        }).success(function(){
+        }).error(function(data){
+            console.log(data);
+        });
+    }
+
+});

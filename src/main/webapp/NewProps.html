@@ -3,15 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
-    <form>
-        <input type="text" placeholder="naziv" id="props_name"><br>
-        <input type="text" placeholder="description" id="props_description"><br>
-        <input type="date"  id="props_expiration_date"><br>
-        <input type="button" value="Dodaj rekvizit" id="submit">
-    </form>
+<!-- JQUERRY -->
 <script src="js/jquery-3.2.1.js"></script>
-<script src="js/newProps.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!--Angular-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<div class="container" ng-app="postApp" ng-controller="postController">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="page-header"><h1>New props</h1></div>
+        <!-- FORM -->
+        <form name="userForm" ng-submit="submitForm()">
+            <div class="form-group">
+                <label>Naziv proizvoda</label>
+                <input type="text" name="name" placeholder="Naziv" id="props_name" class="form-control" ng-model="props.name">
+                <span ng-show="errorName">{{errorName}}</span>
+            </div>
+            <div class="form-group">
+                <label>Opis proizvoda</label>
+                <input type="text" placeholder="Opis" id="props_description" name="username" class="form-control" ng-model="props.description">
+                <span ng-show="errorUserName">{{errorUserName}}</span>
+            </div>
+            <div class="form-group">
+                <label>Datum isticanja</label>
+                <input type="date" name="email" class="form-control" ng-model="props.expirationDate">
+                <span ng-show="errorEmail">{{errorEmail}}</span>
+            </div>
+            <div class="form-group">
+                <label>Props image</label>
+                <input class="form-control" type="file" onchange="angular.element(this).scope().fileSelected(this)" />
+            </div>
+            <br>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<script src="js/newProps.js">
+
+</script>
 </body>
 </html>

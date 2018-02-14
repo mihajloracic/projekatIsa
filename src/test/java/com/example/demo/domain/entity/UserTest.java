@@ -15,6 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.annotation.PostConstruct;
 
 import java.nio.charset.Charset;
+import java.util.Dictionary;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
@@ -24,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserTest {
-
     private static final String URL_PREFIX = "http://localhost:8096/api/props";
 
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),

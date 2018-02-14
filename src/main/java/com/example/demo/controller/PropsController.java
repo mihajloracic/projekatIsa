@@ -3,16 +3,17 @@ package com.example.demo.controller;
 import com.example.demo.domain.entity.Props;
 import com.example.demo.domain.entity.User;
 import com.example.demo.service.impl.PropsService;
+import com.example.demo.service.impl.StorageService;
 import com.example.demo.service.impl.UserGetterService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
+
 
 @RestController
 @RequestMapping("/props")
@@ -24,9 +25,14 @@ public class PropsController {
     @Autowired
     UserGetterService userGetterService;
 
+    @Autowired
+    StorageService storageService;
+
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> addProps(HttpServletRequest request,@RequestBody Props props) throws NotFoundException {
+    public ResponseEntity<?> addProps(HttpServletRequest request, @RequestParam String name, @RequestParam String description, @RequestParam Date date, @RequestParam("file")MultipartFile file) throws NotFoundException {
+        Props props = new Props(name,description,"",date);
         props.setUserCreated(userGetterService.getLoggedInUser(request));
+        props.setImageUrl(storageService.store(file));
         propsService.insertProps(props);
         return ResponseEntity.ok(props);
     }
