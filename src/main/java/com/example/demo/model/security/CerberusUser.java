@@ -24,13 +24,15 @@ public class CerberusUser implements UserDetails {
     super();
   }
 
-  public CerberusUser(Long id, String username, String password, String email, Date lastPasswordReset, Collection<? extends GrantedAuthority> authorities) {
+  public CerberusUser(Long id, String username, String password, String email, Date lastPasswordReset,
+                      Collection<? extends GrantedAuthority> authorities, boolean isEnabled) {
     this.setId(id);
     this.setUsername(username);
     this.setPassword(password);
     this.setEmail(email);
     this.setLastPasswordReset(lastPasswordReset);
     this.setAuthorities(authorities);
+    this.setEnabled(isEnabled);
   }
 
   public Long getId() {
