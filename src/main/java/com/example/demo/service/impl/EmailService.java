@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -13,8 +14,10 @@ import javax.mail.internet.MimeMessage;
 @Service
 public class EmailService {
 
+    @Qualifier("getJavaMailSender")
     @Autowired
     JavaMailSender sender;
+
 
     @Async
     public void sendNotificaitionAsync(String recipientEmail, String subject, String message) throws MailException, InterruptedException, MessagingException {

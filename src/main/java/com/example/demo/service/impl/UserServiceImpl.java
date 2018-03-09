@@ -40,10 +40,7 @@ public class UserServiceImpl  implements UserService{
         return userRepository.save(user);
     }
 
-//    public void createVerificationToken(User user, String token) {
-//
-//        tokenRepository.save(new VerificationTokenService(token, user));
-//    }
+
 
 
 }
