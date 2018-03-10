@@ -4,8 +4,8 @@ import com.example.demo.domain.entity.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserFriendshipService {
 
-    List<User> getUsersByIds(List<Long> ids);
+    List<User> getFriendsFromUser(Long user);
 
 }

@@ -3,10 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.domain.entity.User;
 import com.example.demo.domain.entity.VerificationToken;
 import com.example.demo.event.OnRegistrationCompleteEvent;
-import com.example.demo.service.UserService;
+import com.example.demo.service.RegistrationService;
 import com.example.demo.service.VerificationTokenService;
 import com.example.demo.service.impl.EmailService;
-import org.hibernate.validator.constraints.Email;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class RegistrationController {
     EmailService emailService;
 
     @Autowired
-    UserService userService;
+    RegistrationService registrationService;
 
     @Autowired
     VerificationTokenService tokenService;
@@ -43,7 +42,7 @@ public class RegistrationController {
 
 
         try {
-            userService.registerUser(user);
+            registrationService.registerUser(user);
         } catch (DataIntegrityViolationException e) {
 
             LOGGER.warn("Integrity constraint violated");
@@ -81,7 +80,7 @@ public class RegistrationController {
         }
 
         user.setEnabled(true);
-        userService.saveUser(user);
+        registrationService.saveUser(user);
 
         return ResponseEntity.status(HttpStatus.FOUND)
                 .header(HttpHeaders.LOCATION, "/api/").build();

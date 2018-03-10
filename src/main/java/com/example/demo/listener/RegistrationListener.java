@@ -2,7 +2,6 @@ package com.example.demo.listener;
 
 import com.example.demo.domain.entity.User;
 import com.example.demo.event.OnRegistrationCompleteEvent;
-import com.example.demo.service.UserService;
 import com.example.demo.service.VerificationTokenService;
 import com.example.demo.service.impl.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
