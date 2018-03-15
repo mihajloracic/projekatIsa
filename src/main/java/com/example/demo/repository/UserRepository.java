@@ -12,10 +12,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByIdIn(List<Long> ids);
 
-    //kad se dodaju polja u usera
+    List<User> findByIdInOrderByFirstname(List<Long> ids);
 
-//    List<User> findByIdInOrOrderByFirstname(List<Long> ids);
-
-//    List<User> findByIdInOrOrderByLastname(List<Long> ids);
+    List<User> findByIdInOrderByLastname(List<Long> ids);
 
 }

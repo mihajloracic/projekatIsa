@@ -16,6 +16,10 @@ public class User extends DomainBase {
     private String username;
     private String password;
     private String email;
+    private String firstname;
+    private String lastname;
+    private String city;
+    private String phonenumber;
     private Date lastPasswordReset;
     private String authorities;
     private boolean enabled;
@@ -25,14 +29,19 @@ public class User extends DomainBase {
         this.enabled = false;
     }
 
-    public User(String username, String password, String email, Date lastPasswordReset, String authorities) {
-        this.setUsername(username);
-        this.setPassword(password);
-        this.setEmail(email);
-        this.setLastPasswordReset(lastPasswordReset);
-        this.setAuthorities(authorities);
-        this.setEnabled(false);
+    public User(String username, String password, String email, String firstname, String lastname, String city, String phonenumber, Date lastPasswordReset, String authorities) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.city = city;
+        this.phonenumber = phonenumber;
+        this.lastPasswordReset = lastPasswordReset;
+        this.authorities = authorities;
+        this.enabled = false;
     }
+
 
     @Id
     @Column(name = "id", columnDefinition = "serial")
@@ -72,6 +81,42 @@ public class User extends DomainBase {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Column(name = "firstname")
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    @Column(name = "lastname")
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    @Column(name = "city")
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Column(name = "phone_number")
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     @Column(name = "last_password_reset")

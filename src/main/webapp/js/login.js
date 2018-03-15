@@ -1,4 +1,10 @@
-$(document).on('click', '#submitButton', function(e) {
+// $(document).on('click', '#submit', function(e) {
+//     e.preventDefault();
+//
+//     window.alert('klik na link');
+// });
+
+$(document).on('click', '#submit', function(e) {
     e.preventDefault();
 
     sendLoginData();
@@ -27,6 +33,7 @@ function sendLoginData() {
     $.ajax(settings).done(function (response) {
         window.alert(response.token);
         window.sessionStorage.accessToken = response.token;
+        window.location = "/api/";
     });
 
 }

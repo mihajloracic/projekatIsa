@@ -8,4 +8,8 @@ public interface UserFriendshipService {
 
     List<User> getFriendsFromUser(Long user);
 
+    List<User> getFriendsFromUserOrderedByFirstname(Long user);
+
+    List<User> getFriendsFromUserOrderedByLastname(Long user);
+
 }
