@@ -12,9 +12,15 @@ public class Projection {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne
-//    private Film film;
-//
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Hall hall;
+
+    @Column(name = "time")
+    private Time time;
+
+    @ManyToOne
+    private Film film;
+
 //    @OneToMany
 //    private List<Ticket> tickets;
 

@@ -2,6 +2,7 @@ package com.example.demo.domain.entity;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="hall")
@@ -19,6 +20,9 @@ public class Hall {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Venue venue;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hall")
+    private List<Projection> projections;
 
     public Hall() {
     }

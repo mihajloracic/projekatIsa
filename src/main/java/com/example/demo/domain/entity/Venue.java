@@ -20,7 +20,7 @@ public class Venue implements Serializable{
     @Column(name="address")
     private String address;
 
-    @Column(name="description")
+    @Column(name="description",columnDefinition = "text")
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "venue")
