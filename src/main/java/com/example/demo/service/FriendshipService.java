@@ -8,11 +8,18 @@ import java.util.List;
 
 public interface FriendshipService {
 
-    void insertFriendship(Long userOne, Long userTwo, int status, Long lastActionUser);
+    Friendship insertFriendship(Long userOne, Long userTwo, int status, Long lastActionUser);
 
     void deleteFriendship(Long userOne, Long userTwo);
+
+    void updateFriendship(Long userOne, Long userTwo, int status, Long lastActionUser);
 
     List<Friendship> getFriendships();
 
     List<Friendship> getFriendshipsFromUser(Long user);
+
+    List<Friendship> getFriendRequestsFromUser(Long user);
+
+    List<Friendship> getInvalidToAdd(Long user);
+
 }

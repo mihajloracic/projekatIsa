@@ -3,6 +3,8 @@ package com.example.demo.service.impl;
 import com.example.demo.domain.entity.User;
 import com.example.demo.service.UserFriendshipService;
 import com.example.demo.utils.MatcherUtils;
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +38,24 @@ public class UserFriendshipServiceImplTest {
         List<User> friendsList = userFriendshipService.getFriendsFromUser(38L);
         assertNotNull(friendsList);
         assertEquals(friendsList.size(), 0);
+    }
+
+    @Test
+    public void getNonFriendsFromUser() {
+        Long userId = 1L;
+        //2 i 4 su mu prijatelji
+
+        List<User> nonFriends = userFriendshipService.getNonFriendsFromUser(userId);
+
+        assertNotEquals(nonFriends.size(), 0);
+
+        //friends
+        assertThat(nonFriends, Matchers.not(MatcherUtils.hasUserWithId(1L)));
+        assertThat(nonFriends, Matchers.not(MatcherUtils.hasUserWithId(2L)));
+        assertThat(nonFriends, Matchers.not(MatcherUtils.hasUserWithId(4L)));
+
+        //non friends
+        assertThat(nonFriends, MatcherUtils.hasUserWithId(6L));
+
     }
 }

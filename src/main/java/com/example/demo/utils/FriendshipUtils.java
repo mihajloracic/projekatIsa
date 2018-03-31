@@ -18,6 +18,9 @@ public class FriendshipUtils {
         return new Friendship(userTwo, userOne, status, lastActionUser);
     }
 
+    /*
+        vraca listu id-ova koji su u relaciji sa userom na osnovu friendship objekata
+     */
     public List<Long> getFriendIdList(Long userId, ArrayList<Friendship> friendships) {
         ArrayList<Long> ret = new ArrayList<>();
         for (Friendship f : friendships) {
@@ -27,15 +30,6 @@ public class FriendshipUtils {
                 ret.add(f.getUserOneId());
             }
         }
-        return ret;
-    }
-
-    public List<Long> getFriendsIdList(Long userId, ArrayList<Friendship> friendships) {
-        List<Long> ret = new ArrayList<>();
-        ret.addAll(friendships.stream().filter(u -> u.getUserOneId().equals(userId))
-                                .map(Friendship::getUserTwoId).collect(Collectors.toList()));
-        ret.addAll(friendships.stream().filter(u -> u.getUserTwoId().equals(userId))
-                                .map(Friendship::getUserOneId).collect(Collectors.toList()));
         return ret;
     }
 

@@ -1,4 +1,4 @@
-$(document).on('click', '#submitButton', function(e) {
+$(document).on('click', '#submit', function(e) {
     e.preventDefault();
 
     sendRegistrationData();
@@ -12,10 +12,20 @@ function sendRegistrationData() {
     var password = inputs[1].value;
     var confpassword = inputs[2].value;
     var email = inputs[3].value;
-    var name = inputs[4].value;
+    var firstname = inputs[4].value;
     var lastname = inputs[5].value;
     var city = inputs[6].value;
     var phonenumber = inputs[7].value;
+
+    var data = JSON.stringify({
+        "username" : username,
+        "password" : password,
+        "email" : email,
+        "firstname" : firstname,
+        "lastname" : lastname,
+        "city" : city,
+        "phonenumber" : phonenumber
+    })
 
     if(!passwordsMatch(password, confpassword)) {
         window.alert('Lozinke se ne poklapaju!');
@@ -28,6 +38,30 @@ function sendRegistrationData() {
     }
 
     window.alert('sve ok');
+
+    var settings = {
+        "async": true,
+        "url": "http://localhost:8096/api/registration",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "processData": false,
+        "data": data
+    }
+
+    $.ajax(settings)
+        .done(function (response) {
+                window.alert("Poslato!");
+                inform();
+        })
+        .fail(function (xhr, status, error) {
+            if(xhr.status == 409) {
+                window.alert('Postoji korisnik sa istim kor imenom / emailom?');
+                //handleIntegrityException(settings.data);
+            }
+        });
+
 }
 
 function passwordsMatch(first, second) {
@@ -38,10 +72,55 @@ function passwordsMatch(first, second) {
 }
 
 function fieldsFilled() {
-    var isValid = true;
-    $('.form-field').each(function() {
-        if ( $(this).text() === '' )
-            isValid = false;
-    });
-    return isValid;
+    var inputs = $('.form-field');
+    for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].value === "") {
+            return false;
+        }
+    }
+    return true;
 }
+
+function inform() {
+    $('#mainContainer').hide();
+    $('#mainContainer').parent().append('<h3>Poslat mail sa linkom za potvrdu registracije.</h3>' +
+                        '<a href="/api/">početna</a><br><a href="/api/login.html">uloguj se</a>');
+}
+
+// function handleIntegrityException(data) {
+//
+//     data = JSON.parse(data);
+//
+//     var settings = {
+//         "async": true,
+//         "method": "GET",
+//         "headers": {
+//             "Content-Type": "application/json"
+//         },
+//         "dataType" : "json",
+//         "processData": false
+//     }
+//
+//     var uname =  data.username;
+//
+//     settings.url = "http://localhost:8096/api/user/username?username=" + uname;
+//
+//     $.ajax(settings)
+//         .done(function (response) {
+//             window.alert(response.data);
+//         })
+//         .fail(function (xhr, status, error) {
+//             // window.alert(xhr.status);
+//         });
+//
+//     settings.url = "http://localhost:8096/api/user/email?email=" + data.email;
+//
+//     $.ajax(settings)
+//         .done(function (response) {
+//             window.alert(response.data);
+//         })
+//         .fail(function (xhr, status, error) {
+//             // window.alert(xhr.status);
+//         });
+//
+// }

@@ -25,16 +25,11 @@ public class FriendshipServiceImpl implements FriendshipService {
     @Autowired
     FriendshipUtils friendshipUtils;
 
-//    @Autowired
-//    public FriendshipServiceImpl(FriendshipRepository friendshipRepository, UserRepository userRepository) {
-//        this.friendshipRepository = friendshipRepository;
-//        this.userRepository = userRepository;
-//    }
 
     @Override
-    public void insertFriendship(Long userOne, Long userTwo, int status, Long lastActionUser) {
+    public Friendship insertFriendship(Long userOne, Long userTwo, int status, Long lastActionUser) {
         Friendship friendship = friendshipUtils.prepareInsert(userOne, userTwo, status, lastActionUser);
-        friendshipRepository.save(friendship);
+        return friendshipRepository.save(friendship);
     }
 
     @Override
@@ -48,6 +43,14 @@ public class FriendshipServiceImpl implements FriendshipService {
         friendshipRepository.delete(friendship.getId());
     }
 
+    @Override
+    public void updateFriendship(Long userOne, Long userTwo, int status, Long lastActionUser) {
+        if (userOne < userTwo) {
+            friendshipRepository.updateFriendship(userOne, userTwo, status, userOne);
+        } else {
+            friendshipRepository.updateFriendship(userTwo, userOne, status, userOne);
+        }
+    }
 
     @Override
     public List<Friendship> getFriendships() {
@@ -56,7 +59,17 @@ public class FriendshipServiceImpl implements FriendshipService {
 
     @Override
     public List<Friendship> getFriendshipsFromUser(Long user) {
-        return friendshipRepository.findByUserOneIdOrUserTwoIdAndStatus(user, user, 1);
+        return friendshipRepository.findFriendshipsFromUser(user, user, 1);
+    }
+
+    @Override
+    public List<Friendship> getFriendRequestsFromUser(Long user) {
+        return friendshipRepository.findFriendshipsStatusPending(user, user, 0, user);
+    }
+
+    @Override
+    public List<Friendship> getInvalidToAdd(Long user) {
+        return friendshipRepository.findByUserOneIdOrUserTwoId(user, user);
     }
 
 

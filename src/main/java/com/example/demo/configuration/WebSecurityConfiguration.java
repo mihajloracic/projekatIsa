@@ -81,7 +81,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/velas/**").permitAll()
         .antMatchers("/**").permitAll()
         .anyRequest().authenticated();
-  //        .anyRequest().permitAll();
     // Custom JWT based authentication
     httpSecurity
       .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

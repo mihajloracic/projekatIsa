@@ -33,7 +33,7 @@ function sendLoginData() {
     $.ajax(settings).done(function (response) {
         window.alert(response.token);
         window.sessionStorage.accessToken = response.token;
-        window.location = "/api/";
+        window.location = "/api/userProfile.html";
     });
 
 }

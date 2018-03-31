@@ -16,4 +16,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByIdInOrderByLastname(List<Long> ids);
 
+    List<User> findByIdNotIn(List<Long> ids);
+
+    List<User> findDistinctByFirstnameContainingIgnoreCaseOrLastnameContainingIgnoreCase(String firstname, String lastname);
+
+    List<User> findByFirstnameContainingIgnoreCaseAndLastnameContainingIgnoreCase(String firstname, String lastname);
+
+
+
 }

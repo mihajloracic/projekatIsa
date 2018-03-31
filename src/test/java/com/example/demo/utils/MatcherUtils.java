@@ -28,4 +28,44 @@ public class MatcherUtils {
             }
         };
     }
+
+
+    public static Matcher<List<User>> hasUserWithUsername(final String expected) {
+        return new BaseMatcher<List<User>>() {
+
+            protected String theExpected = expected;
+
+            @Override
+            public boolean matches(Object o) {
+                ArrayList<User> list = (ArrayList<User>) o;
+                return list.stream().filter( x -> x.getUsername().equals(expected)).findFirst().isPresent();
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText(theExpected.toString());
+            }
+        };
+    }
+
+    public static Matcher<List<User>> hasUserWithFirstnameOrLastnameContaining(final String expected) {
+        return new BaseMatcher<List<User>>() {
+
+            protected String theExpected = expected.toLowerCase();
+
+            @Override
+            public boolean matches(Object o) {
+                ArrayList<User> list = (ArrayList<User>) o;
+                return list.stream()
+                        .filter( x -> x.getFirstname().toLowerCase().contains(expected) || x.getLastname().toLowerCase().contains(expected))
+                        .findFirst()
+                        .isPresent();
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText(theExpected.toString());
+            }
+        };
+    }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserFriendshipServiceImpl implements UserFriendshipService {
@@ -46,5 +47,46 @@ public class UserFriendshipServiceImpl implements UserFriendshipService {
         List<Long> ids = utils.getFriendIdList(user, friendships);
 
         return userRepository.findByIdInOrderByLastname(ids);
+    }
+
+    @Override
+    public List<User> getNonFriendsFromUser(Long user) {
+        ArrayList<Friendship> friendships = (ArrayList<Friendship>)friendshipService.getInvalidToAdd(user);
+        List<Long> ids = utils.getFriendIdList(user, friendships);
+        ids.add(user);
+
+        return userRepository.findByIdNotIn(ids);
+    }
+
+    @Override
+    public List<User> getUserFriendRequests(Long user) {
+        ArrayList<Friendship> friendships = (ArrayList<Friendship>)friendshipService.getFriendRequestsFromUser(user);
+        List<Long> ids = utils.getFriendIdList(user, friendships);
+
+        return userRepository.findByIdIn(ids);
+    }
+
+    @Override
+    public List<User> searchUsers(List<User> users, String queryParam) {
+        if (queryParam.contains(" ")) {
+            String[] arr = queryParam.split(" ");
+            List<User> ret = users
+                    .stream()
+                    .filter(elem -> (elem.getFirstname().toLowerCase().contains(arr[0])
+                            || elem.getFirstname().toLowerCase().contains(arr[1])
+                            || elem.getLastname().toLowerCase().contains(arr[0])
+                            || elem.getLastname().toLowerCase().contains(arr[1])))
+                    .collect(Collectors.toList());
+
+            return (ret != null) ? ret : new ArrayList<>();
+        } else {
+            List<User> ret = users
+                    .stream()
+                    .filter(elem -> (elem.getFirstname().toLowerCase().contains(queryParam)
+                            || elem.getLastname().toLowerCase().contains(queryParam)))
+                    .collect(Collectors.toList());
+
+            return (ret != null) ? ret : new ArrayList<>();
+        }
     }
 }

@@ -12,4 +12,9 @@ public interface UserFriendshipService {
 
     List<User> getFriendsFromUserOrderedByLastname(Long user);
 
+    List<User> getNonFriendsFromUser(Long user);
+
+    List<User> getUserFriendRequests(Long user);
+
+    List<User> searchUsers(List<User> users, String queryParam);
 }
