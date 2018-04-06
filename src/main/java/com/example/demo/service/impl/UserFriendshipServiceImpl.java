@@ -72,10 +72,10 @@ public class UserFriendshipServiceImpl implements UserFriendshipService {
             String[] arr = queryParam.split(" ");
             List<User> ret = users
                     .stream()
-                    .filter(elem -> (elem.getFirstname().toLowerCase().contains(arr[0])
-                            || elem.getFirstname().toLowerCase().contains(arr[1])
-                            || elem.getLastname().toLowerCase().contains(arr[0])
-                            || elem.getLastname().toLowerCase().contains(arr[1])))
+                    .filter(elem -> (elem.getFirstname().toLowerCase().contains(arr[0].trim())
+                            || elem.getFirstname().toLowerCase().contains(arr[1].trim())
+                            || elem.getLastname().toLowerCase().contains(arr[0].trim())
+                            || elem.getLastname().toLowerCase().contains(arr[1].trim())))
                     .collect(Collectors.toList());
 
             return (ret != null) ? ret : new ArrayList<>();

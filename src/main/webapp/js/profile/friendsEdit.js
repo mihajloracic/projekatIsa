@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //poziv za provjeru jel ima friend requestova
     //#user-list-container
-    checkFriendRequests();
+    checkFriendRequestsWithNotif(true);
 });
 
 
@@ -131,7 +131,7 @@ $(document).on('click', '.remove-link', function (e) {
     });
 });
 
-function checkFriendRequests() {
+function checkFriendRequestsWithNotif(notif) {
     var user = getLoggedInUsername();
     var settings = {
         "async": true,
@@ -148,8 +148,11 @@ function checkFriendRequests() {
         .done(function (data) {
             if($.trim(data)) {
                 var num = data.length;
-                notify('Obaveštenje!', 'Imate ' + num + ' novih zahteva za prijateljstvo', data);
-                // listFriendRequests(data);
+                if (notif) {
+                    notify('Obaveštenje!', 'Imate ' + num + ' novih zahteva za prijateljstvo', data);
+                } else {
+                    listFriendRequests(data);
+                }
             }
         });
 }
@@ -166,12 +169,15 @@ function notify(title, text, data) {
 function listFriendRequests(users) {
     var container = $('#user-list-container');
     container.empty();
-    $.each(users, function(i, user) {
-        var html = getRequestHtml(user);
-        container.append($(html));
-    });
+    if (!users.length) {
+        toastr.info('', 'Nema novih zahteva!');
+    } else {
+        $.each(users, function (i, user) {
+            var html = getRequestHtml(user);
+            container.append($(html));
+        });
+    }
 }
-
 function getRequestHtml(user) {
     var name = user.firstname + ' ' + user.lastname;
     var linkId = user.username + '-request';     //username-request

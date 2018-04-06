@@ -63,7 +63,7 @@ public class FriendshipTestController {
         Long initiator = userService.findByUsername(friendshipDTO.getInitiatorUsername()).getId();
         Long reciever = userService.findByUsername(friendshipDTO.getRecieverUsername()).getId();
         try {
-            friendshipService.updateFriendship(initiator, reciever, 2, initiator);
+            friendshipService.deleteFriendship(initiator, reciever);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }

@@ -72,7 +72,4 @@ public class FriendshipServiceImpl implements FriendshipService {
         return friendshipRepository.findByUserOneIdOrUserTwoId(user, user);
     }
 
-
-
-
 }

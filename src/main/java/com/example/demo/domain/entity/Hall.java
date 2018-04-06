@@ -1,6 +1,8 @@
 package com.example.demo.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,8 +10,12 @@ import java.util.List;
 @Table(name="hall")
 public class Hall {
 
-    @Column
     @Id
+    @Column(name = "id", columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
     private String name;
 
     @Column(name="number_of_rows")
@@ -21,8 +27,9 @@ public class Hall {
     @ManyToOne(cascade = CascadeType.ALL)
     private Venue venue;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hall")
-    private List<Projection> projections;
+    private List<Event> events;
 
     public Hall() {
     }

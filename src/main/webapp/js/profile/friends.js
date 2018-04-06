@@ -8,7 +8,7 @@ $(document).on('click', '.user-search', function (e) {
 $(document).on('click', '#friend-requests', function (e) {
     e.preventDefault();
 
-    window.alert('zahtjevi');
+    checkFriendRequestsWithNotif(false);
 });
 
 

@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.domain.entity.Venue;
+import com.example.demo.domain.type.VenueType;
 import com.example.demo.repository.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,12 @@ public class VenueService {
         venueRepository.save(v);
     }
 
+    public List<Venue> findByType(VenueType type) {
+        return venueRepository.findByVenueType(type);
+    };
+
+    public List<Venue> findByTypeAndName(VenueType type, String name) {
+        return venueRepository.findByVenueTypeAndNameContainingIgnoreCase(type, name.toLowerCase());
+    }
 
 }

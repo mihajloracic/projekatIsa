@@ -6,3 +6,5 @@ insert into users(username, password, firstname, lastname, last_password_reset, 
 
 insert into friendship(user_one_id, user_two_id, status, action_user_id) values (1, 2, 1, 1);
 insert into friendship(user_one_id, user_two_id, status, action_user_id) values (1, 4, 1, 4);
+
+insert into venue(name, address, type, description) values ('Arena', 'Mihajla Pupina 3', 'CINEMA', 'super bioskop');
