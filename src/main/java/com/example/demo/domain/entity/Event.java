@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Event {
@@ -32,11 +34,25 @@ public class Event {
     private Show show;
 
     @ManyToOne
-    private Venue venue;
+    private Venue venue;    //izvinjavam se zbog ovoga
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")   //event ne vidi
+    private List<Reservation> reservations;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")   //event ne vidi
+    private List<ReservationSeat> seats;
 
     //price
 
     public Event() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public EventType getEventType() {
@@ -86,6 +102,7 @@ public class Event {
     public void setVenue(Venue venue) {
         this.venue = venue;
     }
+
 
     //    @OneToMany
 //    private List<Ticket> tickets;

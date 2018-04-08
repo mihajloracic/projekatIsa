@@ -1,6 +1,7 @@
 $(document).on('click', '.find-venue', function (e) {
     e.preventDefault();
     $('#venue-list-container').empty();
+    $('#date-container').empty();
     $('#searchbox-container').empty();
     var venueType = this.id.replace('find-', '');
 
@@ -46,6 +47,9 @@ $(document).on('click', '.search-button', function (e) {
         });
 });
 
+
+
+
 // #venue-list-container
 
 function findVenues(venueType) {
@@ -80,7 +84,9 @@ function appendVenueList(containter, venues) {
 }
 
 function getVenueHtml(venue) {
-    var html = '<div class="shadow">\n' +
+    var html =
+        '<hr/>\n' +
+        '<div class="shadow">\n' +
         '<div class="col-sm-12">\n' +
         '<div class="col-sm-8">\n' +
         '<h4><a href="#">' + venue.name + '</a></h4>\n' +
@@ -91,7 +97,6 @@ function getVenueHtml(venue) {
         '</div>\n' +
         '</div>\n' +
         '<div class="clearfix"></div>\n' +
-        '<hr/>\n' +
         '</div>';
     return html;
 }

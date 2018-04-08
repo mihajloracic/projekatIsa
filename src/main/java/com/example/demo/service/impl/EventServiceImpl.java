@@ -15,6 +15,11 @@ public class EventServiceImpl implements EventService {
     EventRepository eventRepository;
 
     @Override
+    public Event getEventById(Long id) {
+        return eventRepository.findOne(id);
+    }
+
+    @Override
     public List<Event> getEventsByVenue(Long venueId) {
         return eventRepository.findEventsByVenue(venueId);
     }

@@ -21,9 +21,10 @@ public class Hall {
     @Column(name="number_of_rows")
     private int nRows;
 
-    @Column(name="number_of_seats")
-    private int nSeats;
+    @Column(name="number_of_cols")
+    private int nCols;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     private Venue venue;
 
@@ -31,13 +32,16 @@ public class Hall {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hall")
     private List<Event> events;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hall")
+    private List<Seat> seats;
+
     public Hall() {
     }
 
-    public Hall(String name, int nRows, int nSeats) {
+    public Hall(String name, int nRows, int nCols) {
         this.name = name;
         this.nRows = nRows;
-        this.nSeats = nSeats;
+        this.nCols = nCols;
     }
 
     public String getName() {
@@ -56,11 +60,35 @@ public class Hall {
         this.nRows = nRows;
     }
 
-    public int getnSeats() {
-        return nSeats;
+    public int getnCols() {
+        return nCols;
     }
 
-    public void setnSeats(int nSeats) {
-        this.nSeats = nSeats;
+    public void setnCols(int nCols) {
+        this.nCols = nCols;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

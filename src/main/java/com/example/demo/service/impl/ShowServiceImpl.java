@@ -4,6 +4,7 @@ import com.example.demo.domain.entity.Event;
 import com.example.demo.domain.entity.Show;
 import com.example.demo.service.EventService;
 import com.example.demo.service.ShowService;
+import com.example.demo.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ public class ShowServiceImpl implements ShowService{
 
     @Autowired
     EventService eventService;
+
 
     @Override
     public List<Show> getMoviesFromCinemaEvents(Long cinemaId) {

@@ -4,6 +4,7 @@ package com.example.demo.domain.entity;
 import com.example.demo.domain.type.ShowType;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Show {

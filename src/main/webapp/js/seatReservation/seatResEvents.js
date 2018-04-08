@@ -1,10 +1,24 @@
 
 $(document).on('change', '#d-date', function (e) {
+    var currentDate = $('#d-date').val();
+    $('#venue-list-container').empty();
     var events = localStorage.getItem("eventsOfShow");
     if (events == null) {
         alert('Neka greska!');
     }
-    showHallsAndTime(events);
+    showHallsAndTime(events, currentDate);
+});
+
+//reserve-seats
+$(document).on('click', '.reserve-seats', function (e) {
+    e.preventDefault();
+
+    var eventId = this.id.replace('event-', '');
+    alert('event id' + eventId);
+
+    localStorage.removeItem("eventsOfShow");
+    localStorage.setItem("eventID", eventId);
+    location = "/api/seatPicker.html";
 });
 
 
@@ -61,7 +75,7 @@ $(document).on('click', '.load-events', function (e) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/event/findByVenue",
+        "url": "http://localhost:8096/api/event/findByVenueDistinct",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -84,7 +98,7 @@ function showDateHtml(datesReturned, events) {
         '<input type="text" name="date" id="d-date" placeholder="Izaberite datum">\n' +
         '</div>';
 
-    $('#venue-list-container').append($(dateHtml));
+    $('#date-container').append($(dateHtml));
 
     $("#d-date").datepicker({
         beforeShowDay : function(date) {
@@ -94,14 +108,14 @@ function showDateHtml(datesReturned, events) {
     });
 }
 
-function getValidEventsByDate(events) {
-    var pickedDate = $('#d-date').val();
+function getValidEventsByDate(events, currDate) {
+    // var pickedDate = $('#d-date').val();
     events = JSON.parse(events);
 
-    if(pickedDate == "") {
+    if(currDate == "") {
         return [];
     }
-    var pickedDateF = $.datepicker.formatDate('yy-mm-dd', new Date(pickedDate));
+    var pickedDateF = $.datepicker.formatDate('yy-mm-dd', new Date(currDate));
     var ret = []
 
     $.each(events, function (i, event) {
@@ -115,9 +129,9 @@ function getValidEventsByDate(events) {
 }
 
 //uzmi datum i prikazi vremena i sale
-function showHallsAndTime(events) {
+function showHallsAndTime(events, currDate) {
     var container = $('#venue-list-container');
-    var eventsOnDate = getValidEventsByDate(events);
+    var eventsOnDate = getValidEventsByDate(events, currDate);
     // $('venue-list-container')
     $.each(eventsOnDate, function(i, event) {
         var html = getHallTimeHtml(event);
@@ -133,7 +147,7 @@ function getHallTimeHtml(event) {
         '<h5 class="card-title"> ' + event.hall.name + '</h5>\n' +
         '<p class="card-text">Vreme projekcije: '+ event.time +'</p>\n' +
         '<p class="card-text">Cena: </p>\n' +
-        '<a href="#" class="btn btn-primary">Rezervišite mesta</a>\n' +
+        '<a href="#" id="event-'+  event.id +'" class="btn btn-primary reserve-seats">Rezervišite mesta</a>\n' +
         '</div>\n' +
         '</div>';
     return hallsHtml;
@@ -149,7 +163,9 @@ function appendShowList(containter, events) {
 
 function getShowHtml(e) {
     var idVal = 'show-' + e.show.id + ':venue-' + e.venue.id;
-    var html = '<div class="shadow">\n' +
+    var html =
+        '<hr>' +
+        '<div class="shadow">\n' +
         '<div class="col-sm-12">\n' +
         '<div class="col-sm-8">\n' +
         '<h4><a href="#">' + e.show.name + '</a></h4>\n' +
@@ -161,7 +177,6 @@ function getShowHtml(e) {
         '</div>\n' +
         '</div>\n' +
         '<div class="clearfix"></div>\n' +
-        '<hr/>\n' +
         '</div>';
     return html;
 }

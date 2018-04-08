@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Izbor sedišta</title>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" id="toastr-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.9/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.9/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.9/addons/p5.sound.min.js"></script>
+    <script src="js/seatPicker/main.js"></script>
+    <script src="js/seatPicker/cell.js"></script>
+    <script src="js/seatPicker/invitation.js"></script>
+    <script src="js/seatPicker/reservation.js"></script>
+    <script src="js/seatPicker/inviteFriends.js"></script>
+    <script src="js/utils.js"></script>
+
+</head>
+<body id="main-body">
+    <div>
+        <h1>Izbor sedišta</h1>
+    </div>
+    <div class="row">
+    <div class="col-sm-3">
+        <div class="card">
+            <h5 class="card-header">Događaj</h5>
+            <div class="card-body">
+                <h5 id="event-name" class="card-title"></h5>
+                <p id="event-desc" class="card-text"></p>
+            </div>
+        </div>
+        <br>
+        <div id="seat-res" class="card">
+            <h5 class="card-header">Sedište</h5>
+            <div id="add-btn" class="card-body">
+                <p id="seat-num" class="card-text"></p><hr>
+                <p id="seat-row" class="card-text">Red:</p>
+                <p id="seat-col" class="card-text">Kolona:</p>
+                <!--<a id="seat-res-btn" href="#" class="btn btn-primary">Rezerviši</a>-->
+                <!--add the .disabled class-->
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="canvas-holder">
+
+        </div>
+
+    </div>
+    </div>
+
+</body>
+</html>

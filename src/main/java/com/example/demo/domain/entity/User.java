@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -23,6 +24,9 @@ public class User extends DomainBase {
     private Date lastPasswordReset;
     private String authorities;
     private boolean enabled;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
+    private List<Reservation> reservations;
 
     public User() {
         super();

@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface EventService {
 
+    Event getEventById(Long id);
+
     List<Event> getEventsByVenue(Long venueId);
 
     List<Event> getEventsByShow(Long showId);
