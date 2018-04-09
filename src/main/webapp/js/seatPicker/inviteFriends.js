@@ -1,14 +1,21 @@
 var username;
 var invitation;
+var resSeatNum;
 
 $(document).ready(function() {
     username = getLoggedInUsername();
     invitation = new Invitation(username);
+    resSeatNum = localStorage.getItem("reservationSeatNum");
+    localStorage.removeItem("reservationSeatNum");
 });
 
 
 $(document).on('click', '.invite-link', function(e) {
     e.preventDefault();
+    if (invitation.getInvitedNum() == resSeatNum) {
+        alert('Nedovoljno sedišta!');
+        return;
+    }
 
     var userToInv = this.id.replace('-invite-id', '');
     invitation.addFriendInv(userToInv);
@@ -114,6 +121,7 @@ $(document).on('click', '#seat-res-btn', function(e) {
     var data = getReservationData();
     // sacuvaj rezervaciju u ls
     localStorage.setItem("reservationDetails", JSON.stringify(data));
+    localStorage.setItem("reservationSeatNum", data.seats.length+'');
     window.location = '/api/invite.html';
 });
 
@@ -123,7 +131,7 @@ $(document).on('click', '#finish-res', function(e) {
 
     var resData = JSON.parse(localStorage.getItem("reservationDetails"));
     localStorage.removeItem("reservationDetails");
-    resData["friends"] = invitation.getInvitedFriends();
+    resData["invitedUsernames"] = invitation.getInvitedFriends();
 
     var settings = {
         "async": false,
@@ -144,7 +152,6 @@ $(document).on('click', '#finish-res', function(e) {
         .fail(function (xhr, status, code) {
             alert('Neki fail!');
         });
-    //send res data to server
 });
 
 //vraca objekat

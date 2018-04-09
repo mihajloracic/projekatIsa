@@ -18,7 +18,6 @@ public class EmailService {
     @Autowired
     JavaMailSender sender;
 
-
     @Async
     public void sendNotificaitionAsync(String recipientEmail, String subject, String message) throws MailException, InterruptedException, MessagingException {
 
@@ -26,6 +25,7 @@ public class EmailService {
         System.out.println("Slanje emaila...");
 
         MimeMessage msg = sender.createMimeMessage();
+        msg.setContent(message, "text/html");
         MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");
 
         helper.setTo(recipientEmail);

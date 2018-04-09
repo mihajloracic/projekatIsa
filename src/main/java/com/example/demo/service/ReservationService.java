@@ -9,8 +9,9 @@ public interface ReservationService {
 
     List<Reservation> findByEvent(Long eventId);
 
-    boolean addReservation(ReservationDTO reservationDTO);
+    Reservation addReservation(ReservationDTO reservationDTO);
 
+    Reservation findById(Long reservationId);
 
 }
 

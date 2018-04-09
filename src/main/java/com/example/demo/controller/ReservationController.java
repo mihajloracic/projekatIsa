@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/reservation")
 public class ReservationController {
 
-
     @Autowired
     ReservationService reservationService;
 
@@ -24,11 +23,16 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.findByEvent(entityID.getId()));
     }
 
+    @RequestMapping(value="/findById", method = RequestMethod.POST)
+    public ResponseEntity<?> findById(@RequestBody EntityID entityID) {
+        return ResponseEntity.ok(reservationService.findById(entityID.getId()));
+    }
+
     @RequestMapping(value="/addReservation",
                     method = RequestMethod.POST)
     public ResponseEntity<?> addReservation(@RequestBody ReservationDTO reservationDTO) {
-        return ResponseEntity.ok(reservationService.addReservation(reservationDTO));
-        //da addReservation vraca listu pozvanih i id rezervacije
+        Reservation res = reservationService.addReservation(reservationDTO);
+        return ResponseEntity.ok(res);
     }
 
 

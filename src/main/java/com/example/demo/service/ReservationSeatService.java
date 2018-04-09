@@ -15,5 +15,8 @@ public interface ReservationSeatService {
 
     List<ReservationSeat> findReservedByEvent(Long eventId);
 
+    List<ReservationSeat> findByReservation(Long id);
+
+    void removeSeat(Long id);
 
 }

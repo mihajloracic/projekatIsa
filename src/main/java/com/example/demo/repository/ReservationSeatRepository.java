@@ -9,6 +9,13 @@ import java.util.List;
 
 public interface ReservationSeatRepository extends JpaRepository<ReservationSeat, Long> {
 
+
+    @Query(value = "SELECT * FROM reservation_seat \n" +
+            "WHERE reservation_id = :id", nativeQuery = true)
+    List<ReservationSeat> findByReservationId(
+            @Param("id") Long id
+    );
+
     //nadji sva zauzeta
     @Query(value = "SELECT * FROM reservation_seat \n" +
             "WHERE reservation_id IN :ids", nativeQuery = true)

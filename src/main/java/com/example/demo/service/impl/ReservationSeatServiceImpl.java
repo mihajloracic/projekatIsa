@@ -41,4 +41,14 @@ public class ReservationSeatServiceImpl implements ReservationSeatService {
         List<Long> ids = reservations.stream().map(res -> res.getId()).collect(Collectors.toList());
         return reservationSeatRepository.findReserved(ids);
     }
+
+    @Override
+    public List<ReservationSeat> findByReservation(Long id) {
+        return reservationSeatRepository.findByReservationId(id);
+    }
+
+    @Override
+    public void removeSeat(Long id) {
+        reservationSeatRepository.delete(id);
+    }
 }
