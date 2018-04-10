@@ -70,6 +70,7 @@ public class ReservationServiceImpl implements ReservationService {
         List<ReservationSeat> resSeats = seats.stream()
                 .map(s -> new ReservationSeat(newReservation, event, s.getRow(), s.getCol()))
                 .collect(Collectors.toList());
+
         reservationSeatService.saveSeats(resSeats);
 
         return newReservation;

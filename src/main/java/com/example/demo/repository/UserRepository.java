@@ -12,9 +12,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByIdIn(List<Long> ids);
 
-    List<User> findByIdInOrderByFirstname(List<Long> ids);
+    List<User> findByIdInOrderByFirstnameAsc(List<Long> ids);
 
-    List<User> findByIdInOrderByLastname(List<Long> ids);
+    List<User> findByIdInOrderByLastnameAsc(List<Long> ids);
 
     List<User> findByIdNotIn(List<Long> ids);
 

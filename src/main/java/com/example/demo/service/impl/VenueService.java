@@ -33,4 +33,11 @@ public class VenueService {
         return venueRepository.findByVenueTypeAndNameContainingIgnoreCase(type, name.toLowerCase());
     }
 
+    public List<Venue> findAllOrderedByName(VenueType type) {
+        return venueRepository.findByVenueTypeOrderByNameAsc(type);
+    }
+
+    public List<Venue> findAllOrderedByCity(VenueType type) {
+        return venueRepository.findByVenueTypeOrderByCityAsc(type);
+    }
 }

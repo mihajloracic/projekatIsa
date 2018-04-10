@@ -38,7 +38,7 @@ public class UserFriendshipServiceImpl implements UserFriendshipService {
         ArrayList<Friendship> friendships = (ArrayList<Friendship>)friendshipService.getFriendshipsFromUser(user);
         List<Long> ids = utils.getFriendIdList(user, friendships);
 
-        return userRepository.findByIdInOrderByFirstname(ids);
+        return userRepository.findByIdInOrderByFirstnameAsc(ids);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class UserFriendshipServiceImpl implements UserFriendshipService {
         ArrayList<Friendship> friendships = (ArrayList<Friendship>)friendshipService.getFriendshipsFromUser(user);
         List<Long> ids = utils.getFriendIdList(user, friendships);
 
-        return userRepository.findByIdInOrderByLastname(ids);
+        return userRepository.findByIdInOrderByLastnameAsc(ids);
     }
 
     @Override
