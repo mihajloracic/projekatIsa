@@ -67,4 +67,5 @@ public class ReservationSeat {
     public void setCol(int col) {
         this.col = col;
     }
+
 }

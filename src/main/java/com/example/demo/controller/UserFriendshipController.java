@@ -45,5 +45,16 @@ public class UserFriendshipController {
         return ResponseEntity.ok(friendRequests);
     }
 
+    @RequestMapping(value="/getFriendsOrderedByFirstname/{username}", method = RequestMethod.GET)
+    public ResponseEntity<?> getFriendsByFirstname(@PathVariable("username") String username) {
+        User user = userService.findByUsername(username);
+        return ResponseEntity.ok(userFriendshipService.getFriendsFromUserOrderedByFirstname(user.getId()));
+    }
+
+    @RequestMapping(value="/getFriendsOrderedByLastname/{username}", method = RequestMethod.GET)
+    public ResponseEntity<?> getFriendsByLastname(@PathVariable("username") String username) {
+        User user = userService.findByUsername(username);
+        return ResponseEntity.ok(userFriendshipService.getFriendsFromUserOrderedByLastname(user.getId()));
+    }
 
 }

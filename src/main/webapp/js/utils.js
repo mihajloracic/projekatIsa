@@ -15,6 +15,13 @@ function getLoggedInUsername() {
     $.ajax(settings)
         .done(function (response) {
             ret = response;
+        })
+        .fail(function () {
+            ret = "";
         });
     return ret;
+}
+
+function getIdenticonUrl(username) {
+    return "http://identicon.org/?t=" + username + "&s=64";
 }

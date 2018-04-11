@@ -147,7 +147,7 @@ $(document).on('click', '#finish-res', function(e) {
     $.ajax(settings)
         .done(function (response) {
             alert('Uspijesna rezervacija!');
-            window.location = '/api/index.html';
+            window.location = '/api/home.html';
         })
         .fail(function (xhr, status, code) {
             alert('Neki fail!');

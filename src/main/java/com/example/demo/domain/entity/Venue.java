@@ -24,6 +24,9 @@ public class Venue implements Serializable{
     @Column(name="address")
     private String address;
 
+    @Column(name="city")
+    private String city;
+
     @Enumerated(EnumType.STRING)
     @Column(name="type")
     private VenueType venueType;
@@ -96,5 +99,13 @@ public class Venue implements Serializable{
     }
 
     public Venue() {
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

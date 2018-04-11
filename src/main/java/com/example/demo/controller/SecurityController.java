@@ -21,7 +21,13 @@ public class SecurityController {
     @RequestMapping(value="/username", method = RequestMethod.GET)
     @ResponseBody
     public String currentUserName(Principal principal) {
-        return principal.getName();
+        String name;
+        try {
+            name = principal.getName();
+        } catch(Exception e) {
+            return "";
+        }
+        return name;
     }
 
     @RequestMapping(value="/userDetails", method = RequestMethod.GET)

@@ -13,6 +13,7 @@ public interface VenueRepository extends JpaRepository<Venue,Long>{
 
     List<Venue> findByVenueTypeAndNameContainingIgnoreCase(VenueType type, String name);
 
+    List<Venue> findByVenueTypeOrderByNameAsc(VenueType type);
 
-
+    List<Venue> findByVenueTypeOrderByCityAsc(VenueType type);
 }

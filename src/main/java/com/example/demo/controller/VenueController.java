@@ -28,10 +28,22 @@ public class VenueController  {
         return  ResponseEntity.ok(venueService.findByType(VenueType.THEATRE));
     }
 
+    @RequestMapping(value = "/theatresByName", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllTheatresByNameAsc(){ return  ResponseEntity.ok(venueService.findAllOrderedByName(VenueType.THEATRE)); }
+
+    @RequestMapping(value = "/theatresByCity", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllTheatresByCityAsc(){ return  ResponseEntity.ok(venueService.findAllOrderedByCity(VenueType.THEATRE)); }
+
     @RequestMapping(value = "/cinemas", method = RequestMethod.GET)
     public ResponseEntity<?> getAllCinemas(){
         return  ResponseEntity.ok(venueService.findByType(VenueType.CINEMA));
     }
+
+    @RequestMapping(value = "/cinemasByName", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllCinemasByNameAsc(){ return  ResponseEntity.ok(venueService.findAllOrderedByName(VenueType.CINEMA)); }
+
+    @RequestMapping(value = "/cinemasByCity", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllCinemasByCityAsc(){ return  ResponseEntity.ok(venueService.findAllOrderedByCity(VenueType.CINEMA)); }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addVenue(@RequestBody Venue v){
