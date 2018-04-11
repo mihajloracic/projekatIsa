@@ -12,4 +12,7 @@ public interface VenueRepository extends JpaRepository<Venue,Long>{
     List<Venue> findByVenueType(VenueType type);
 
     List<Venue> findByVenueTypeAndNameContainingIgnoreCase(VenueType type, String name);
+
+
+
 }

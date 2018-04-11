@@ -25,9 +25,17 @@ public class VenueService {
         venueRepository.save(v);
     }
 
+    public void updateVenue(Venue v){
+        venueRepository.save(v);
+    }
+
+    public Venue findById(Long id){
+        return venueRepository.findOne(id);
+    }
+
     public List<Venue> findByType(VenueType type) {
         return venueRepository.findByVenueType(type);
-    };
+    }
 
     public List<Venue> findByTypeAndName(VenueType type, String name) {
         return venueRepository.findByVenueTypeAndNameContainingIgnoreCase(type, name.toLowerCase());
