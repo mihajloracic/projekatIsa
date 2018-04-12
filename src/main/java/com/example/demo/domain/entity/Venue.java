@@ -27,6 +27,12 @@ public class Venue implements Serializable{
     @Column(name="city")
     private String city;
 
+    @Column(name="lat")
+    private double lat;
+
+    @Column
+    private double lng;
+
     @Enumerated(EnumType.STRING)
     @Column(name="type")
     private VenueType venueType;
@@ -96,6 +102,22 @@ public class Venue implements Serializable{
 
     public void setEvents(Set<Event> events) {
         this.events = events;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 
     public Venue() {

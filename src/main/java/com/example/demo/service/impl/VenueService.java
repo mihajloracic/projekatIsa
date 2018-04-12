@@ -18,7 +18,8 @@ public class VenueService {
     }
 
     public List<Venue> findAll(){
-        return venueRepository.findAll();
+        List<Venue> result = venueRepository.findAll();
+        return result;
     }
 
     public void addVenue(Venue v){

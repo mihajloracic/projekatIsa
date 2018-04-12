@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.entity.User;
+import com.example.demo.model.security.CerberusUser;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserService securityService;
+
     @RequestMapping(value = "/getByUsername", method = RequestMethod.GET)
     public User getUserByUsername(@RequestParam("username") String username) {
         return userService.findByUsername(username);
     }
+
 
 
     @RequestMapping(value = "/editUserInfo", method = RequestMethod.POST)
@@ -34,6 +39,13 @@ public class UserController {
         u.setCity(user.getCity());
         u.setPhonenumber(user.getPhonenumber());
         return userService.saveUser(u);
+    }
+
+    @RequestMapping(value="/userDetails", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserDetails(Principal principal) {
+        User u = userService.findByUsername(principal.getName());
+        return u.getAuthorities();
     }
 
     @RequestMapping(value = "/getUsersWithUsernames", method = RequestMethod.POST)

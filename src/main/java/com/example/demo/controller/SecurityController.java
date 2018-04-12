@@ -30,11 +30,15 @@ public class SecurityController {
         return name;
     }
 
+
+
     @RequestMapping(value="/userDetails", method = RequestMethod.GET)
     @ResponseBody
     public String currentUserDetails(Principal principal) {
         CerberusUser user = (CerberusUser) principal;
         return user.toString();
     }
+
+
 
 }
