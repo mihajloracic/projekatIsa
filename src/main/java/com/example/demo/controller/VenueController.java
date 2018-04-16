@@ -60,6 +60,20 @@ public class VenueController  {
 
     }
 
+    @RequestMapping(value="update/{id}",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<?> update(@PathVariable("id") long id,@RequestBody Venue data){
+        Venue existing = venueService.findById(id);
+        existing.setAddress(data.getAddress());
+        existing.setName(data.getName());
+        existing.setDescription(data.getDescription());
+        existing.setLat(data.getLat());
+        existing.setLng(data.getLng());
+        venueService.addVenue(existing);
+        return ResponseEntity.ok(existing);
+
+    }
+
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public ResponseEntity<?> updateVenue(@RequestBody Venue v){
         venueService.updateVenue(v);

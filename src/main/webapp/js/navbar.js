@@ -1,6 +1,8 @@
 $(document).ready(function () {
-    var navbar = $('#navbar-id');
-    navbar.append($(getNavbarHtml()));
+    // var navbar = $('#navbar-id');
+    // navbar.append($(getNavbarHtml()));
+
+    $('body').prepend($(getNavbarHtml()));
 
     var loggedIn = getLoggedInUsername();
     if (loggedIn == "") {

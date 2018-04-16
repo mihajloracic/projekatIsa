@@ -17,9 +17,9 @@ insert into show(name, type, length, grade) values ('Saints of Newark', 'FILM', 
 insert into hall (name, venue_id, number_of_rows, number_of_cols) values ('Sala 1', 1, 10, 12);
 insert into hall (name, venue_id, number_of_rows, number_of_cols) values ('Sala 1', 2, 9, 10);
 
-insert into event (type, date, time, venue_id, show_id, hall_id) values ('PROJECTION', '2018-02-14', '20:00:00', 1, 1, 1);
-insert into event (type, date, time, venue_id, show_id, hall_id) values ('PROJECTION', '2018-04-14', '21:00:00', 1, 2, 1);
-insert into event (type, date, time, venue_id, show_id, hall_id) values ('PROJECTION', '2018-04-15', '18:00:00', 1, 2, 1);
+insert into event (type, date, time, venue_id, show_id, hall_id, price) values ('PROJECTION', '2018-02-14', '20:00:00', 1, 1, 1, 350);
+insert into event (type, date, time, venue_id, show_id, hall_id, price) values ('PROJECTION', '2018-04-14', '21:00:00', 1, 2, 1, 300);
+insert into event (type, date, time, venue_id, show_id, hall_id, price) values ('PROJECTION', '2018-04-15', '18:00:00', 1, 2, 1, 250);
 
 insert into reservation (event_id, reservation_owner_id) values (1, 1);
 

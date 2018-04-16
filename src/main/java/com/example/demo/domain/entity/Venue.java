@@ -3,7 +3,7 @@ package com.example.demo.domain.entity;
 
 import com.example.demo.domain.type.VenueType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -34,7 +34,7 @@ public class Venue implements Serializable{
     private double lng;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="type")
+    @Column(name="type", updatable = false)
     private VenueType venueType;
 
     @Column(name="description",columnDefinition = "text")
