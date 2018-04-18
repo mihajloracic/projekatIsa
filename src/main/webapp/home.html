@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Početna</title>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" id="toastr-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/home/listCinemas.js"></script>
+    <script src="js/home/listTheatres.js"></script>
+    <script src="js/home/listFriends.js"></script>
+    <script src="js/home/listReservations.js"></script>
+    <script src="js/home/home.js"></script>
+
+</head>
+<body>
+<div>
+    <div id="navbar-id"></div>
+    <div>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a id="theatres-link" class="list-link" href="#">Pozorišta</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a id="cinemas-link" class="list-link" href="#">Bioskopi</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a id="friends-link" class="list-link" href="#">Prijatelji</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a id="reservations-link" class="list-link" href="#">Rezervacije</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="col-md-7 ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 id="list-container-name"></h4>
+            </div>
+            <div id="list-container" class="panel-body">
+                <div>
+                    <div id="hide-cb" class="dropdown" hidden>
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Sortiraj po
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="ul-link" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <!--<li><a href="#">Action</a></li>-->
+                            <!--<li><a href="#">Another action</a></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div id="append-list-to">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

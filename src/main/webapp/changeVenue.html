@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/changeVenue.js"></script>
+    <style>
+        #map {
+            height: 300px;
+            width: 40%;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body>
+
+<form>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 id="name"></h1>
+            <p id="description"></p>
+            <p>
+                <button class="btn btn-primary btn-lg ADMIN" style="display: none;" role="button">Edit</button>
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="nameTextarea">Naziv</label>
+            <textarea class="form-control" id="nameTextarea" rows="1"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="addressTextArea">Adresa</label>
+            <textarea class="form-control" id="addressTextArea" rows="2"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="descriptionTextArea">Opis</label>
+            <textarea class="form-control" id="descriptionTextArea" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <div id="map"></div>
+            <script>
+                function initMap() {
+                    var uluru = {lat: -25.363, lng: 131.044};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 8,
+                        center: uluru
+                    });
+                }
+            </script>
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADk80poSUgyqOZtM-x1D-UaH9joMnU304&callback=initMap">
+            </script>
+
+        </div>
+        <button id="submitVenueDetails" class="btn btn-primary">Izmeni</button>
+    </div>
+</form>
+
+</body>
+</html>

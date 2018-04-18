@@ -24,6 +24,8 @@ public class Event {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Hall hall;
 
+    private double price;
+
     @Column(name = "time")
     private Time time;
 
@@ -103,8 +105,5 @@ public class Event {
         this.venue = venue;
     }
 
-
-    //    @OneToMany
-//    private List<Ticket> tickets;
 
 }

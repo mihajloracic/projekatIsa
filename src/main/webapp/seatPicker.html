@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Izbor sedišta</title>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" id="toastr-css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.9/p5.min.js"></script>
@@ -17,28 +18,36 @@
     <script src="js/seatPicker/reservation.js"></script>
     <script src="js/seatPicker/inviteFriends.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/navbar.js"></script>
+
 
 </head>
 <body id="main-body">
+<div id="navbar-id"></div>
+
     <div>
         <h1>Izbor sedišta</h1>
     </div>
     <div class="row">
     <div class="col-sm-3">
-        <div class="card">
-            <h5 class="card-header">Događaj</h5>
-            <div class="card-body">
-                <h5 id="event-name" class="card-title"></h5>
-                <p id="event-desc" class="card-text"></p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Događaj</h4>
+            </div>
+            <div class="panel-body">
+                <h5 id="event-name"></h5>
+                <p id="event-desc"></p>
             </div>
         </div>
         <br>
-        <div id="seat-res" class="card">
-            <h5 class="card-header">Sedište</h5>
-            <div id="add-btn" class="card-body">
-                <p id="seat-num" class="card-text"></p><hr>
+        <div id="seat-res" class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Sedište</h4>
+            </div>
+            <div id="add-btn" class="panel-body">
+                <p id="seat-num" class="card-text"></p>
                 <p id="seat-row" class="card-text">Red:</p>
-                <p id="seat-col" class="card-text">Kolona:</p>
+                <p id="seat-col" class="card-text">Kolona:</p><hr>
                 <!--<a id="seat-res-btn" href="#" class="btn btn-primary">Rezerviši</a>-->
                 <!--add the .disabled class-->
             </div>

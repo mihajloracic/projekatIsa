@@ -3,7 +3,7 @@ package com.example.demo.domain.entity;
 
 import com.example.demo.domain.type.VenueType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,8 +24,17 @@ public class Venue implements Serializable{
     @Column(name="address")
     private String address;
 
+    @Column(name="city")
+    private String city;
+
+    @Column(name="lat")
+    private double lat;
+
+    @Column
+    private double lng;
+
     @Enumerated(EnumType.STRING)
-    @Column(name="type")
+    @Column(name="type", updatable = false)
     private VenueType venueType;
 
     @Column(name="description",columnDefinition = "text")
@@ -95,6 +104,30 @@ public class Venue implements Serializable{
         this.events = events;
     }
 
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
     public Venue() {
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

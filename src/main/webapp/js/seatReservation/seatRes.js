@@ -84,8 +84,7 @@ function appendVenueList(containter, venues) {
 }
 
 function getVenueHtml(venue) {
-    var html =
-        '<hr/>\n' +
+    return '<hr/>\n' +
         '<div class="shadow">\n' +
         '<div class="col-sm-12">\n' +
         '<div class="col-sm-8">\n' +
@@ -93,12 +92,11 @@ function getVenueHtml(venue) {
         '</div>\n' +
         '<div class="col-sm-4">\n' +
         '<br>\n' +
-        '<a id="venue-'+ venue.id +'" class="load-events" href="#">Pregledaj događaje</a>\n' +
+        '<a id="venue-' + venue.id + '" class="load-events" href="#">Pregledaj događaje</a>\n' +
         '</div>\n' +
         '</div>\n' +
         '<div class="clearfix"></div>\n' +
         '</div>';
-    return html;
 }
 
 function addSearchBox(venueType) {
