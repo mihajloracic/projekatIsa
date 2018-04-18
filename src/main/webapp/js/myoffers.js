@@ -3,7 +3,7 @@ app.controller("myCtrl", function($scope, $http) {
     config = { headers : {
         "x-auth-token": window.sessionStorage.accessToken,
     }};
-    $scope.records = $http.get("/api/props?cinemaId="+getUrlVars()["cinemaid"],config).then(function (response) {
+    $scope.records = $http.get("/api/propsoffer/user",config).then(function (response) {
         $scope.records = response.data;
         console.log(response.data)
     });
@@ -18,7 +18,7 @@ app.controller("myCtrl", function($scope, $http) {
                 "content-type": "application/json",
             },
         }).then(function(data) {
-            window.alert("offer added")
+            window.alert("offer changed")
         },function (error){
             console.log(error)
         });

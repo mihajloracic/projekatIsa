@@ -34,6 +34,7 @@ function sendLoginData() {
         window.alert(response.token);
         window.sessionStorage.accessToken = response.token;
         window.location = "/api/userProfile.html";
+        localStorage.setItem("x-auth-token",response.token);
     });
 
 }

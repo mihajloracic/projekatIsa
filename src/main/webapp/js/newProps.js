@@ -1,25 +1,45 @@
 
-var postApp = angular.module('postApp', []);
-postApp.controller('postController', function($scope, $http) {
-    $scope.fileSelected = function (element) {
-        var myFileSelected = element.files[0];
-    };
-    this.submitForm = function(file, uploadUrl){
-        var form = new FormData();
-        form.append('file', file);
-        form.append("name", $scope.name);
-        form.append("description", $scope.description);
-        form.append("date", $scope.expirationDate);
+$(document).on('click', '#submit', function(e) {
+    e.preventDefault();
 
+    sendLoginData();
+});
 
-        $http.post("/api/props/", form, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined,
-                "x-auth-token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxNjgzOTQxODMwNywiZXhwIjoxNTE3NDQ0MjE4fQ.7_JbBQDusHTJbDgqtg8YB9hPg7qpQIzYD2lXjaR8SG-lJkbjNg6IeQBhwbC62YqKKrAIHoQYOyImtxE2yy0ekg"}
-        }).success(function(){
-        }).error(function(data){
-            console.log(data);
-        });
+function sendLoginData() {
+    var inputs = document.getElementsByTagName('input');
+
+    var name = inputs[0].value;
+    var description = inputs[1].value;
+    var date = inputs[2].value;
+    var cinemaId = getUrlVars()["cinemaId"];
+    var data = JSON.stringify({ "name" : name, "description" : description, "expirationDate" : date, "cinemaId" : cinemaId});
+
+    var settings = {
+        "async": true,
+        "url": "/api/props",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json",
+            "x-auth-token": window.sessionStorage.accessToken
+        },
+        "processData": false,
+        "data": data
     }
 
-});
+    $.ajax(settings).done(function (response) {
+        window.alert('uspesno dodat oglas, ceka odborenje');
+    });
+
+}
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}

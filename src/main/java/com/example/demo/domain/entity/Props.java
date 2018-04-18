@@ -17,8 +17,8 @@ public class Props implements Serializable{
     private String imageUrl;
     private boolean approved;
     private User userCreated;
-
-
+    private Long cinemaId;
+    private boolean sold;
     @ManyToOne
     public User getUserCreated() {
         return userCreated;
@@ -37,7 +37,9 @@ public class Props implements Serializable{
         this.imageUrl = imageUrl;
         this.approved = false;//approve administrator
         this.expirationDate = date;
+        this.sold = false;
     }
+
     @Id
     @Column(name = "id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -88,5 +90,20 @@ public class Props implements Serializable{
     public void setApproved(boolean approved) {
         this.approved = approved;
     }
+    @Column(name = "cinemaId")
+    public Long getCinemaId() {
+        return cinemaId;
+    }
 
+    public void setCinemaId(Long cinemaId) {
+        this.cinemaId = cinemaId;
+    }
+    @Column(name = "sold")
+    public boolean isSold() {
+        return sold;
+    }
+
+    public void setSold(boolean sold) {
+        this.sold = sold;
+    }
 }

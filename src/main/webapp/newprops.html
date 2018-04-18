@@ -17,33 +17,26 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!--Angular-->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<div class="container" ng-app="postApp" ng-controller="postController">
+
+<div class="container" ng-app="postApp">
     <div class="col-sm-8 col-sm-offset-2">
         <div class="page-header"><h1>New props</h1></div>
         <!-- FORM -->
-        <form name="userForm" ng-submit="submitForm()">
+        <form name="userForm">
             <div class="form-group">
                 <label>Naziv proizvoda</label>
-                <input type="text" name="name" placeholder="Naziv" id="props_name" class="form-control" ng-model="props.name">
-                <span ng-show="errorName">{{errorName}}</span>
+                <input type="text" name="name" placeholder="Naziv" id="props_name" class="form-control" >
             </div>
             <div class="form-group">
                 <label>Opis proizvoda</label>
                 <input type="text" placeholder="Opis" id="props_description" name="username" class="form-control" ng-model="props.description">
-                <span ng-show="errorUserName">{{errorUserName}}</span>
             </div>
             <div class="form-group">
                 <label>Datum isticanja</label>
-                <input type="date" name="email" class="form-control" ng-model="props.expirationDate">
-                <span ng-show="errorEmail">{{errorEmail}}</span>
-            </div>
-            <div class="form-group">
-                <label>Props image</label>
-                <input class="form-control" type="file" onchange="angular.element(this).scope().fileSelected(this)" />
+                <input type="date" name="email" class="form-control">
             </div>
             <br>
-            <button class="btn btn-primary">Submit</button>
+            <button id="submit" class="btn btn-primary" ng-click="submitForm()">Submit</button>
         </form>
     </div>
 </div>

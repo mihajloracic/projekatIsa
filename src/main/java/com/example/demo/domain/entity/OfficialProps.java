@@ -15,7 +15,7 @@ public class OfficialProps implements Serializable {
     private Date expirationDate;
     private String imageUrl;
     private User userCreated;
-
+    private Venue venu;
 
     @ManyToOne
     public User getUserCreated() {
@@ -29,17 +29,27 @@ public class OfficialProps implements Serializable {
     public OfficialProps() {
     }
 
-    public OfficialProps(String name, String description, String imageUrl, Date date) {
+    public OfficialProps(String name, String description, String imageUrl, Date date, Venue venue) {
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
         this.expirationDate = date;
+        this.venu = venu;
     }
     @Id
     @Column(name = "id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
+    }
+
+    @ManyToOne
+    public Venue getVenu() {
+        return venu;
+    }
+
+    public void setVenu(Venue venu) {
+        this.venu = venu;
     }
 
     public void setId(long id) {

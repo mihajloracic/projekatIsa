@@ -3,24 +3,28 @@ app.controller("myCtrl", function($scope, $http) {
     config = { headers : {
         "x-auth-token": window.sessionStorage.accessToken,
     }};
-    $scope.records = $http.get("/api/props?cinemaId="+getUrlVars()["cinemaid"],config).then(function (response) {
+    $scope.records = $http.get("/api/propsoffer/byprops?propsId="+getUrlVars()["propsId"],config).then(function (response) {
         $scope.records = response.data;
         console.log(response.data)
     });
-    $scope.makeOffer = function (props,value) {
-        var data = JSON.stringify({ "propsId" : props.id, "offerValue" : value});
+    $scope.props = $http.get("/api/props/propsbyid?propsId="+getUrlVars()["propsId"],config).then(function (response) {
+        $scope.props = response.data;
+        console.log(response.data)
+    });
+    $scope.acceptOffer = function (offer) {
+        var data = JSON.stringify({ "propsId" : offer.id, "offerValue" : offer.value});
         $http({
             method  : 'POST',
-            url     : '/api/propsoffer',
+            url     : '/api/propsoffer/accept',
             data    : data,
             headers: {
                 "x-auth-token": window.sessionStorage.accessToken,
                 "content-type": "application/json",
             },
         }).then(function(data) {
-            window.alert("offer added")
+            window.alert("Item succesfully sold")
         },function (error){
-            console.log(error)
+            window.alert("Offer has been changed. Try again")
         });
     }
 });

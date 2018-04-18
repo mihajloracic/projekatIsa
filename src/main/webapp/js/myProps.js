@@ -4,7 +4,7 @@ app.controller("myCtrl", function($scope, $http) {
         "x-auth-token": window.sessionStorage.accessToken,
 
     }};
-    $scope.records = $http.get("/api/props/admin?cinemaId="+getUrlVars()["cinemaId"],config).then(function (response) {
+    $scope.records = $http.get("/api/props/mypProps",config).then(function (response) {
         $scope.records = response.data;
     });
     var settings = {
@@ -14,21 +14,7 @@ app.controller("myCtrl", function($scope, $http) {
             "content-type": "application/json"
         }
     }
-    $scope.approveProps = function (props) {
-        $http({
-            method  : 'POST',
-            url     : '/api/props/admin',
-            data    : props,
-            headers: {
-                "x-auth-token": window.sessionStorage.accessToken,
-                "content-type": "application/json",
-            },
-        }).then(function(data) {
-            props.approved = true;
-        },function (error){
-            console.log(error)
-        });
-    }
+
     $scope.deleteProps = function (props) {
         props.approved = true;
         $http({
@@ -46,15 +32,3 @@ app.controller("myCtrl", function($scope, $http) {
         });
     }
 });
-function getUrlVars()
-{
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
-    }
-    return vars;
-}
