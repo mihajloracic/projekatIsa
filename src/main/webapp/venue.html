@@ -12,31 +12,42 @@
     <style>
         #map {
             height: 300px;
-            width: 40%;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-<div class = "container">
+<div class="container">
     <div class="jumbotron">
-        <h1 id="name">  </h1>
+        <h1 id="name"></h1>
         <p id="description"></p>
-        <p><button  class="btn btn-primary btn-lg ADMIN" id="editButton" style="display: none;" role="button">Edit</button></p>
+        <p>
+            <button class="btn btn-primary btn-lg ADMIN" id="editButton" style="display: none;" role="button">Edit
+            </button>
+        </p>
     </div>
-    <div id="map"></div>
-    <script>
-        function initMap() {
-            var uluru = {lat: -25.363, lng: 131.044};
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
-                center: uluru
-            });
-        }
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADk80poSUgyqOZtM-x1D-UaH9joMnU304&callback=initMap">
-    </script>
-</div>
 
+    <div class="row">
+        <div class="col-sm-5">
+            <div id="map"></div>
+            <script>
+                function initMap() {
+                    var uluru = {lat: -25.363, lng: 131.044};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 8,
+                        center: uluru
+                    });
+                }
+            </script>
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADk80poSUgyqOZtM-x1D-UaH9joMnU304&callback=initMap">
+            </script>
+        </div>
+        <div class="col-sm-7" id="discounts">
+
+        </div>
+    </div>
+</div>
+<hr>
 </body>
 </html>

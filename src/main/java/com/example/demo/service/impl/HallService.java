@@ -22,6 +22,8 @@ public class HallService {
         hallRepository.save(h);
     }
 
-
+    public Hall findById(Long id){
+        return hallRepository.findOne(id);
+    }
 
 }

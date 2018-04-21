@@ -1,6 +1,8 @@
 package com.example.demo.domain.entity;
 
 import com.example.demo.domain.type.EventType;
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -30,6 +32,7 @@ public class Event {
     private Time time;
 
     @Column(name = "date")
+    //@JsonFormat(pattern="yyyy-MM-dd")
     private Date date;
 
     @ManyToOne
@@ -105,5 +108,11 @@ public class Event {
         this.venue = venue;
     }
 
+    public double getPrice() {
+        return price;
+    }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }

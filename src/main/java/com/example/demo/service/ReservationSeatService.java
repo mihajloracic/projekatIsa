@@ -19,4 +19,5 @@ public interface ReservationSeatService {
 
     void removeSeat(Long id);
 
+
 }

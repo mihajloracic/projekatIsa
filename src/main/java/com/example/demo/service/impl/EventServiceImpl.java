@@ -35,5 +35,9 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findEventsOfVenueByShow(venueId, showId);
     }
 
+    @Override
+    public void addEvent(Event e){
+        eventRepository.save(e);
+    }
 
 }

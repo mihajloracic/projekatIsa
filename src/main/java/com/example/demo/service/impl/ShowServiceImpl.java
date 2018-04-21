@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.domain.entity.Event;
 import com.example.demo.domain.entity.Show;
+import com.example.demo.repository.ShowRepository;
 import com.example.demo.service.EventService;
 import com.example.demo.service.ShowService;
 import com.example.demo.utils.AppUtils;
@@ -17,10 +18,22 @@ public class ShowServiceImpl implements ShowService{
     @Autowired
     EventService eventService;
 
+    @Autowired
+    ShowRepository showRepository;
 
     @Override
     public List<Show> getMoviesFromCinemaEvents(Long cinemaId) {
         List<Event> events = eventService.getEventsByVenue(cinemaId);
         return events.stream().map(event -> event.getShow()).collect(Collectors.toList());
+    }
+
+    @Override
+    public Show findById(Long id) {
+        return showRepository.findOne(id);
+    }
+
+    @Override
+    public void addShow(Show s) {
+        showRepository.save(s);
     }
 }

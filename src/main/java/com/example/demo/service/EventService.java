@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.entity.Event;
+import com.example.demo.domain.entity.Venue;
 
 import java.util.List;
 
 public interface EventService {
+
 
     Event getEventById(Long id);
 
@@ -13,5 +15,7 @@ public interface EventService {
     List<Event> getEventsByShow(Long showId);
 
     List<Event> getEventsOfVenueByShow(Long venueId, Long showId);
+
+    void addEvent(Event e);
 
 }

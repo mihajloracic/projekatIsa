@@ -6,10 +6,7 @@ import com.example.demo.model.dto.VenueShowDTO;
 import com.example.demo.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,9 +25,30 @@ public class EventController {
         return ResponseEntity.ok(eventService.getEventById(entityID.getId()));
     }
 
+    @RequestMapping(value="/update/{id}", method = RequestMethod.POST)
+    public ResponseEntity<?> update(@PathVariable Long id,@RequestBody Event data) {
+        Event existing = eventService.getEventById(id);
+        existing.setDate(data.getDate());
+        existing.setTime(data.getTime());
+        existing.setPrice(data.getPrice());
+        eventService.addEvent(existing);
+        return ResponseEntity.ok(existing);
+    }
+
     @RequestMapping(value="/findByVenue", method = RequestMethod.POST)
     public ResponseEntity<?> findByVenue(@RequestBody EntityID entityID) {
         return ResponseEntity.ok(eventService.getEventsByVenue(entityID.getId()));
+    }
+
+    @RequestMapping(value="/venue/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> findByVenueId(@PathVariable("id") long id) {
+        return ResponseEntity.ok(eventService.getEventsByVenue(id));
+    }
+
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> find(@PathVariable("id") long id) {
+        Event e = eventService.getEventById(id);
+        return ResponseEntity.ok(e);
     }
 
     //DISTINCT BY SHOW
@@ -50,5 +68,6 @@ public class EventController {
     public ResponseEntity<?> findByVenueShow(@RequestBody VenueShowDTO venueShowDTO) {
         return ResponseEntity.ok(eventService.getEventsOfVenueByShow(venueShowDTO.getVenueId(), venueShowDTO.getShowId()));
     }
+
 
 }

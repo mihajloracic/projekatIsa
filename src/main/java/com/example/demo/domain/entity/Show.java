@@ -33,6 +33,9 @@ public class Show {
     @Column(name="length")
     private int length;
 
+    @Column
+    private String director;
+
     @Column(name="grade")
     private double grade;
 
@@ -95,4 +98,11 @@ public class Show {
         this.grade = grade;
     }
 
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
 }
