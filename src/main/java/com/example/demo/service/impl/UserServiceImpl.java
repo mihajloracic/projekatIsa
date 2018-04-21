@@ -44,4 +44,5 @@ public class UserServiceImpl implements UserService {
     public List<User> findByFirstnameAndLastname(String firstname, String lastname) {
         return userRepository.findByFirstnameContainingIgnoreCaseAndLastnameContainingIgnoreCase(firstname, lastname);
     }
+
 }

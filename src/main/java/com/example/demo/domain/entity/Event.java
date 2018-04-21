@@ -36,7 +36,7 @@ public class Event {
     private Show show;
 
     @ManyToOne
-    private Venue venue;    //izvinjavam se zbog ovoga
+    private Venue venue;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")   //event ne vidi
     private List<Reservation> reservations;

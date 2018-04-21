@@ -20,8 +20,8 @@ public class HallService {
 
     public void addHall(Hall h){
         hallRepository.save(h);
-
     }
+
 
 
 }

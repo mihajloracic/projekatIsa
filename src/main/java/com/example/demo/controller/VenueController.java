@@ -17,6 +17,7 @@ public class VenueController  {
     @Autowired
     VenueService venueService;
 
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> getAllVenues(){
@@ -58,6 +59,13 @@ public class VenueController  {
         Venue v = venueService.findById(id);
         return ResponseEntity.ok(v);
 
+    }
+
+    @RequestMapping(value="/{id}/halls",method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<?> getHalls(@PathVariable("id") long id){
+        Venue v = venueService.findById(id);
+        return ResponseEntity.ok(v.getHalls());
     }
 
     @RequestMapping(value="update/{id}",method = RequestMethod.POST)
