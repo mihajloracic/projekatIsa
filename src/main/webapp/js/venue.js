@@ -35,6 +35,57 @@ window.onload = function () {
 
     }
 
+    $.ajax({
+        "url": "/api/venues/"+id+"/discounts"
+        , "method": "GET"
+        , success: function (result) {
+
+            var arrayLength = result.length;
+            var str = "";
+            for (var i = 0; i < arrayLength; i++) {
+                str += "<div class=\"col-sm-5\">\n" +
+                    "        <ul class=\"list-group\">\n" +
+                    "        <li class=\"list-group-item\">" +
+                    result[i].event.show.name + " " + result[i].event.time + " " + result[i].event.date +
+                    "</li>\n" +
+                    "        </ul>\n" +
+                    "        </div>\n" +
+                    "        <div class=\"col-sm-1\">\n" +
+                    "        <button type=\"button\"" +
+                    "id="+result[i].id+
+                    " class=\"reserveDiscount btn btn-success\" >Rezerviši</button>\n" +
+                    "</div>"
+                //Do something
+            }
+            $("#discounts")[0].innerHTML = str;
+
+        }
+    });
+
+    $(document).on('click', '.reserveDiscount', function (e)  {
+        e.preventDefault();
+
+        alert(event.target.id)
+
+
+        var data = {
+            "discountEventId" : event.target.id,
+            "username" : getLoggedInUsername()
+        }
+
+        $.ajax({
+            "url": "/api/reservation/discountReservation"
+            , "method": "POST"
+            , contentType: 'application/json;'
+            , dataType: 'json'
+            , data: JSON.stringify(data)
+            , success: function (result) {
+
+
+            }
+        });
+    });
+
 };
 
 

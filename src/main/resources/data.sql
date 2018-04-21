@@ -19,7 +19,8 @@ insert into hall (name, venue_id, number_of_rows, number_of_cols) values ('Sala 
 insert into hall (name, venue_id, number_of_rows, number_of_cols) values ('Sala 3', 1, 10, 120);
 insert into hall (name, venue_id, number_of_rows, number_of_cols) values ('Sala 1', 2, 9, 10);
 
-insert into event (type, date, time, venue_id, show_id, hall_id, price) values ('PROJECTION', '2018-02-14', '20:00:00', 1, 1, 1, 350);
+insert into event (type, date, time, venue_id, show_id, hall_id, price) values ('PROJECTION', '2019-02-14', '20:00:00', 1, 1, 1, 350);
+insert into event (type, date, time, venue_id, show_id, hall_id, price) values ('PROJECTION', '2016-02-14', '20:00:00', 1, 1, 1, 350);
 insert into event (type, date, time, venue_id, show_id, hall_id, price) values ('PROJECTION', '2018-04-14', '21:00:00', 1, 2, 1, 300);
 insert into event (type, date, time, venue_id, show_id, hall_id, price) values ('PROJECTION', '2018-04-15', '18:00:00', 1, 2, 1, 250);
 
@@ -29,3 +30,6 @@ insert into reservation_seat (reservation_id, event_id, row, col) values (1, 1, 
 insert into reservation_seat (reservation_id, event_id, row, col) values (1, 1, 3, 4);
 insert into reservation_seat (reservation_id, event_id, row, col) values (1, 1, 3, 5);
 insert into reservation_seat (reservation_id, event_id, row, col) values (1, 1, 3, 6);
+
+insert into discount_event (new_price, event_id) values (150,1);
+insert into discount_event (new_price, event_id) values (150,2);

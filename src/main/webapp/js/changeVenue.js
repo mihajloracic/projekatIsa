@@ -10,9 +10,10 @@ window.onload = function () {
     //
     // }
 
-
+    //INICIJALIZACIJA JUMBOTRONA I MAPE
     var id = getUrlParameter("id");
     var marker;
+
     $.ajax({
         "url": "/api/venues/" + id
         , "method": "GET"
@@ -38,7 +39,7 @@ window.onload = function () {
         }
     });
 
-
+    //SALE
     $.ajax({
         "url": "/api/venues/" + id + "/halls"
         , "method": "GET"
@@ -57,7 +58,7 @@ window.onload = function () {
                     "        <div class=\"col-sm-1\">\n" +
                     "        <button type=\"button\"" +
                     "id="+result[i].id+
-                    " data-toggle=\"modal\" data-target=\"#seatModal\" " +
+                    " data-toggle=\"modal\" onclick=\"open_modal("+result[i].id +")\""+ "    \" " +
                     " class=\"changeHall btn btn-warning\">Izmeni</button>\n" +
                     "        </div>"
                 a = result[i];
@@ -68,11 +69,34 @@ window.onload = function () {
         }
     });
 
+    //PROJEKCIJE
+    $.ajax({
+        "url": "/api/event/venue/"+id
+        , "method": "GET"
+        , success: function (result) {
 
-    $(document).on('click', '.changeHall', function (e)  {
-        //e.preventDefault();
-        //alert($(event.target.id));
+            var arrayLength = result.length;
+            var str = "";
+            for (var i = 0; i < arrayLength; i++) {
+                str += "<div class=\"col-sm-5\">\n" +
+                    "        <ul class=\"list-group\">\n" +
+                    "        <li class=\"list-group-item\">" +
+                    result[i].show.name + " " + result[i].time + " " + result[i].date +
+                    "</li>\n" +
+                    "        </ul>\n" +
+                    "        </div>\n" +
+                    "        <div class=\"col-sm-1\">\n" +
+                    "        <button type=\"button\"" +
+                    "id="+result[i].id+
+                    " onclick=\"window.location.href='/api/changeProjection.html?id="+result[i].id +  "'\"" +
+                    " data-toggle=\"modal\" class=\"changeProjection btn btn-warning\" >Izmeni</button>\n" +
+                    "        </div>"
+                a = result[i];
+                //Do something
+            }
+            $("#projection")[0].innerHTML = str;
 
+        }
     });
 
     $("#submitVenueDetails").click(function (e) {
@@ -105,9 +129,45 @@ window.onload = function () {
         });
     });
 
+    $(document).on('click', '#changeSeats', function (e)  {
+        e.preventDefault();
+
+        var hall = {
+            "nRows": $("#nRows")[0].value,
+            "nCols": $("#nCols")[0].value
+        }
+
+        $.ajax({
+            "url": "/api/venues/hall/update/" + selectedHall
+            , "method": "POST"
+            , contentType: 'application/json; charset=utf-8'
+            , dataType: 'json'
+            , data: JSON.stringify(hall)
+            , success: function (result) {
+
+
+            }
+        });
+    });
 
 
 
 };
+var selectedHall;
+function open_modal(hallId){
+    selectedHall=hallId;
+
+    $.ajax({
+        "url": "/api/venues/hall/" + hallId
+        , "method": "GET"
+        , success: function (result) {
+
+            $("#nRows")[0].value = result.nRows;
+            $("#nCols")[0].value = result.nCols;
+
+        }
+    });
+    $("#seatModal").modal("show");
+}
 
 
