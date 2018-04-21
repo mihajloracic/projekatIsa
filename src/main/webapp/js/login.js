@@ -11,7 +11,6 @@ $(document).on('click', '#submit', function(e) {
 });
 
 function sendLoginData() {
-    window.alert('alo');
     var inputs = document.getElementsByTagName('input');
 
     var username = inputs[0].value;
@@ -21,7 +20,7 @@ function sendLoginData() {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/auth",
+        "url": "/api/auth",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -31,7 +30,6 @@ function sendLoginData() {
     }
 
     $.ajax(settings).done(function (response) {
-        window.alert(response.token);
         window.sessionStorage.accessToken = response.token;
         window.location = "/api/userProfile.html";
         localStorage.setItem("x-auth-token",response.token);

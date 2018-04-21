@@ -38,7 +38,7 @@ $(document).on('click', '.show-events', function (e) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/event/findByVenueShow",
+        "url": "/api/event/findByVenueShow",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -75,7 +75,7 @@ $(document).on('click', '.load-events', function (e) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/event/findByVenueDistinct",
+        "url": "/api/event/findByVenueDistinct",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"

@@ -6,7 +6,7 @@ $(document).on('click', '#submit', function(e) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/",
+        "url": "/api/",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"

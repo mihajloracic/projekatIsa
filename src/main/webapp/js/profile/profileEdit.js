@@ -43,7 +43,7 @@ function saveChanges() {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/user/editUserInfo",
+        "url": "/api/user/editUserInfo",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json",

@@ -13,6 +13,7 @@ public interface ReservationService {
 
     Reservation findById(Long reservationId);
 
+    List<Reservation> findAllByOwner(Long ownerId);
 }
 
 

@@ -81,4 +81,10 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.findOne(reservationId);
     }
 
+    @Override
+    public List<Reservation> findAllByOwner(Long ownerId) {
+        return reservationRepository.findByOwner(ownerId);
+    }
+
+
 }

@@ -14,7 +14,7 @@ function markSeats(eventId) {
 
     var settings = {
         "async": false,
-        "url": "http://localhost:8096/api/reservationSeat/findByEvent",
+        "url": "/api/reservationSeat/findByEvent",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -66,7 +66,7 @@ function getEvent(eventId) {
 
     var settings = {
         "async": false,
-        "url": "http://localhost:8096/api/event/findById",
+        "url": "/api/event/findById",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"

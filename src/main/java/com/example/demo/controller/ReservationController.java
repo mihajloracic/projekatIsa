@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/reservation")
 public class ReservationController {
@@ -33,6 +35,12 @@ public class ReservationController {
     public ResponseEntity<?> addReservation(@RequestBody ReservationDTO reservationDTO) {
         Reservation res = reservationService.addReservation(reservationDTO);
         return ResponseEntity.ok(res);
+    }
+
+    @RequestMapping(value="/findAll", method = RequestMethod.POST)
+    public ResponseEntity<?> findAllReservations(@RequestBody EntityID entityID) {
+        List<Reservation> reservations = reservationService.findAllByOwner(entityID.getId());
+        return ResponseEntity.ok(reservations);
     }
 
 

@@ -32,7 +32,7 @@ $(document).on('click', '.search-button', function (e) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/venues/getByTypeAndName",
+        "url": "/api/venues/getByTypeAndName",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -48,10 +48,6 @@ $(document).on('click', '.search-button', function (e) {
 });
 
 
-
-
-// #venue-list-container
-
 function findVenues(venueType) {
     listAllVenues(venueType);
 }
@@ -64,7 +60,7 @@ function listAllVenues(venueType) {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8096/api/venues/" + searchParam,
+        "url": "/api/venues/" + searchParam,
         "method": "GET",
         "headers": {
             "Cache-Control": "no-cache"

@@ -53,7 +53,7 @@ function showFriendsInvite(queryParam) {
 
     var settings = {
         "async": false,
-        "url": "http://localhost:8096/api/friends/edit/add",
+        "url": "/api/friends/edit/add",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -135,7 +135,7 @@ $(document).on('click', '#finish-res', function(e) {
 
     var settings = {
         "async": false,
-        "url": "http://localhost:8096/api/reservation/addReservation",
+        "url": "/api/reservation/addReservation",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"

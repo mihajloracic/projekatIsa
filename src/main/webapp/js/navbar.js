@@ -36,9 +36,9 @@ $(document).on('click', '#second-link', function (e) {
     if ($('#second-link').hasClass('logout')) {
         sessionStorage.removeItem('accessToken');
         $('#second-link').removeClass('logout');
-        window.location = 'http://localhost:8096/api/index.html';
+        window.location = '/api/index.html';
     } else {
-        window.location = 'http://localhost:8096/api/login.html';
+        window.location = '/api/login.html';
     }
 })
 

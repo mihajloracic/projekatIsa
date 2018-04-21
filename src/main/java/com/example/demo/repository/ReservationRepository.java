@@ -15,5 +15,12 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     List<Reservation> findByEvent(
             @Param("eventId") Long eventId
     );
+
+    @Query(value = "SELECT * FROM reservation \n" +
+            "WHERE reservation_owner_id = :ownerId", nativeQuery = true)
+    List<Reservation> findByOwner(
+            @Param("ownerId") Long ownerId
+    );
+
 }
 

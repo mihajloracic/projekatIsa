@@ -28,11 +28,6 @@ $(document).on('click', '#back-link', function (e) {
     restoreLinks();
 });
 
-// #search-button-add
-// #search-button-find
-
-// #user-list-container - na ovo se apenduje lista vracenih korisnika
-
 function searchPeople(mode) {
 
     //if mode == 'add', izlistaj korisnike koji nisu prijatelji
@@ -50,7 +45,7 @@ function searchPeople(mode) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/friends/edit/add",
+        "url": "/api/friends/edit/add",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"

@@ -5,7 +5,7 @@ function showCinemaList(appendTo, key) {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8096/api/venues/" + mapC[key],
+        "url": "/api/venues/" + mapC[key],
         "method": "GET",
         "headers": {
             "Cache-Control": "no-cache"
@@ -28,7 +28,7 @@ function getVenueHtml(venue) {
     return '<hr/>\n' +
         '<div class="shadow">\n' +
         '<div class="col-sm-8">\n' +
-        '<h4><a href="#">' + venue.name + '</a></h4>\n' +
+        '<h4><a href="/api/venue.html?id=' + venue.id + '">' + venue.name + '</a></h4>\n' +
         '</div>\n' +
         '<div class="clearfix"></div>\n' +
         '</div>';

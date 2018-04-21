@@ -37,11 +37,9 @@ function sendRegistrationData() {
         return;
     }
 
-    window.alert('sve ok');
-
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/registration",
+        "url": "/api/registration",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -57,7 +55,7 @@ function sendRegistrationData() {
         })
         .fail(function (xhr, status, error) {
             if(xhr.status == 409) {
-                window.alert('Postoji korisnik sa istim kor imenom / emailom?');
+                window.alert('Postoji korisnik sa istim koriscnickim imenom / emailom');
                 //handleIntegrityException(settings.data);
             }
         });
@@ -86,41 +84,3 @@ function inform() {
     $('#mainContainer').parent().append('<h3>Poslat mail sa linkom za potvrdu registracije.</h3>' +
                         '<a href="/api/">početna</a><br><a href="/api/login.html">uloguj se</a>');
 }
-
-// function handleIntegrityException(data) {
-//
-//     data = JSON.parse(data);
-//
-//     var settings = {
-//         "async": true,
-//         "method": "GET",
-//         "headers": {
-//             "Content-Type": "application/json"
-//         },
-//         "dataType" : "json",
-//         "processData": false
-//     }
-//
-//     var uname =  data.username;
-//
-//     settings.url = "http://localhost:8096/api/user/username?username=" + uname;
-//
-//     $.ajax(settings)
-//         .done(function (response) {
-//             window.alert(response.data);
-//         })
-//         .fail(function (xhr, status, error) {
-//             // window.alert(xhr.status);
-//         });
-//
-//     settings.url = "http://localhost:8096/api/user/email?email=" + data.email;
-//
-//     $.ajax(settings)
-//         .done(function (response) {
-//             window.alert(response.data);
-//         })
-//         .fail(function (xhr, status, error) {
-//             // window.alert(xhr.status);
-//         });
-//
-// }

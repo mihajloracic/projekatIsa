@@ -8,7 +8,7 @@ function showFriendList(appendTo, key) {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8096/api/friends/" + mapF[key] + "/" + loggedIn,
+        "url": "/api/friends/" + mapF[key] + "/" + loggedIn,
         "method": "GET",
         "headers": {
             "Cache-Control": "no-cache"

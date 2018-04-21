@@ -20,7 +20,7 @@ $(document).on('click', '.accept-request', function (e) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/friend/accept",
+        "url": "/api/friend/accept",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -54,7 +54,7 @@ $(document).on('click', '.decline-request', function (e) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/friend/decline",
+        "url": "/api/friend/decline",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -86,7 +86,7 @@ $(document).on('click', '.add-link', function (e) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/friend/add",
+        "url": "/api/friend/add",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -116,7 +116,7 @@ $(document).on('click', '.remove-link', function (e) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/friend/delete",
+        "url": "/api/friend/delete",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -136,7 +136,7 @@ function checkFriendRequestsWithNotif(notif) {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8096/api/friends/getFriendRequests/" + user,
+        "url": "/api/friends/getFriendRequests/" + user,
         "method": "GET",
         "headers": {
             "X-Auth-Token": window.sessionStorage.accessToken,

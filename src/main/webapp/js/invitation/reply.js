@@ -22,7 +22,7 @@ $(document).on('click', '#inv-decline', function(e) {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/invitation/decline",
+        "url": "/api/invitation/decline",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -53,7 +53,7 @@ $(document).ready(function () {
 
     var settings = {
         "async": true,
-        "url": "http://localhost:8096/api/reservation/findById",
+        "url": "/api/reservation/findById",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"

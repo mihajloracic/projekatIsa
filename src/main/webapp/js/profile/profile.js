@@ -10,7 +10,7 @@ function getLoggedInUsername() {
     var settings = {
         "async": false,
         "crossDomain": true,
-        "url": "http://localhost:8096/api/currentUser/username",
+        "url": "/api/currentUser/username",
         "method": "GET",
         "headers": {
             "X-Auth-Token": window.sessionStorage.accessToken,
@@ -47,7 +47,7 @@ function loadUserData(username) {
     var settings = {
         "async": false,
         "crossDomain": true,
-        "url": "http://localhost:8096/api/user/getByUsername?username=" + username,
+        "url": "/api/user/getByUsername?username=" + username,
         "method": "GET",
         "headers": {
             "X-Auth-Token": window.sessionStorage.accessToken,
