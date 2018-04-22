@@ -36,7 +36,7 @@ $(document).on('click', '.list-link', function (e) {
         case "reservations" :
             titleEl.text('Rezervacije');
             cb.attr('hidden', true);
-            showReservationList(appendTo);
+            // showReservationList(appendTo);
             break;
         default :
             showTheatreList(appendTo, 2);
@@ -78,3 +78,4 @@ $(document).on('click', '.cb-param', function (e) {
         default: showTheatreList(appendTo, 2);
     }
 });
+

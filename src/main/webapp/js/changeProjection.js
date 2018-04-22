@@ -21,6 +21,30 @@ window.onload = function () {
 
     });
 
+
+    $(document).on('click', '#submitDiscount', function (e) {
+        e.preventDefault();
+        var price = $("#newPrice").val();
+        if(price=="")
+            return;
+        var data = {
+            "price" : price,
+            "eventId" : id
+        }
+        $.ajax({
+            "url": "/api/event/discount/"
+            , "method": "POST"
+            , contentType: 'application/json'
+            , dataType: 'json'
+            , data: JSON.stringify(data)
+            , success: function (result) {
+                window.location.reload();
+            }
+        });
+
+
+    });
+
     $(document).on('click', '#submitDetails', function (e)  {
         e.preventDefault();
         date = $("#date")[0].value;

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/createProjection.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="form-group">
+        <label for="date">Datum</label>
+        <input type="date" id="date">
+    </div>
+    <div class="form-group">
+        <label for="time">Vreme</label>
+        <input type="time" id="time">
+    </div>
+    <div class="form-group">
+        <label for="price">Cena</label>
+        <input type="number" id="price" min="0" step="1"/>
+    </div>
+    <div class="form-group">
+        <label for="hall">Sala</label>
+        <select id="hall" style="position:relative; top:10px; left:25px">
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="show">Film/predstava</label>
+        <select id="show" style="position:relative; top:10px; left:25px">
+        </select>
+    </div>
+    <button id="createProjection" class="btn btn-success">Dodaj projekciju</button>
+</div>
+
+</body>
+</html>

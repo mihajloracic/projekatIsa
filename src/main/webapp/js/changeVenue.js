@@ -57,8 +57,8 @@ window.onload = function () {
                     "        </div>\n" +
                     "        <div class=\"col-sm-1\">\n" +
                     "        <button type=\"button\"" +
-                    "id="+result[i].id+
-                    " data-toggle=\"modal\" onclick=\"open_modal("+result[i].id +")\""+ "    \" " +
+                    "id=" + result[i].id +
+                    " data-toggle=\"modal\" onclick=\"open_modal(" + result[i].id + ")\"" + "    \" " +
                     " class=\"changeHall btn btn-warning\">Izmeni</button>\n" +
                     "        </div>"
                 a = result[i];
@@ -71,7 +71,7 @@ window.onload = function () {
 
     //PROJEKCIJE
     $.ajax({
-        "url": "/api/event/venue/"+id
+        "url": "/api/event/venue/" + id
         , "method": "GET"
         , success: function (result) {
 
@@ -87,8 +87,8 @@ window.onload = function () {
                     "        </div>\n" +
                     "        <div class=\"col-sm-1\">\n" +
                     "        <button type=\"button\"" +
-                    "id="+result[i].id+
-                    " onclick=\"window.location.href='/api/changeProjection.html?id="+result[i].id +  "'\"" +
+                    "id=" + result[i].id +
+                    " onclick=\"window.location.href='/api/changeProjection.html?id=" + result[i].id + "'\"" +
                     " data-toggle=\"modal\" class=\"changeProjection btn btn-warning\" >Izmeni</button>\n" +
                     "        </div>"
                 a = result[i];
@@ -99,6 +99,10 @@ window.onload = function () {
         }
     });
 
+
+    $("#addProjectionButton").click(function (e) {
+         window.location = "createProjection.html?venueId="+id;
+    });
     $("#submitVenueDetails").click(function (e) {
         e.preventDefault();
         name = $("#nameTextarea")[0].value;
@@ -129,7 +133,7 @@ window.onload = function () {
         });
     });
 
-    $(document).on('click', '#changeSeats', function (e)  {
+    $(document).on('click', '#changeSeats', function (e) {
         e.preventDefault();
 
         var hall = {
@@ -151,11 +155,11 @@ window.onload = function () {
     });
 
 
-
 };
 var selectedHall;
-function open_modal(hallId){
-    selectedHall=hallId;
+
+function open_modal(hallId) {
+    selectedHall = hallId;
 
     $.ajax({
         "url": "/api/venues/hall/" + hallId

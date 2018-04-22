@@ -25,6 +25,8 @@ insert into event (type, date, time, venue_id, show_id, hall_id, price) values (
 insert into event (type, date, time, venue_id, show_id, hall_id, price) values ('PROJECTION', '2018-04-15', '18:00:00', 1, 2, 1, 250);
 
 insert into reservation (event_id, reservation_owner_id) values (1, 1);
+insert into reservation (event_id, reservation_owner_id) values (2, 1);
+insert into reservation (event_id, reservation_owner_id) values (2, 2);
 
 insert into reservation_seat (reservation_id, event_id, row, col) values (1, 1, 3, 3);
 insert into reservation_seat (reservation_id, event_id, row, col) values (1, 1, 3, 4);

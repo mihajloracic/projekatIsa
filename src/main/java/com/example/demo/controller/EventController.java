@@ -1,9 +1,17 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.entity.DiscountEvent;
 import com.example.demo.domain.entity.Event;
+import com.example.demo.domain.entity.Hall;
+import com.example.demo.domain.type.EventType;
+import com.example.demo.model.dto.DiscountDTO;
 import com.example.demo.model.dto.EntityID;
+import com.example.demo.model.dto.EventDTO;
 import com.example.demo.model.dto.VenueShowDTO;
 import com.example.demo.service.EventService;
+import com.example.demo.service.ShowService;
+import com.example.demo.service.impl.DiscountEventService;
+import com.example.demo.service.impl.HallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +27,29 @@ public class EventController {
 
     @Autowired
     EventService eventService;
+
+    @Autowired
+    ShowService showService;
+
+    @Autowired
+    HallService hallService;
+
+    @Autowired
+    DiscountEventService discountEventService;
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> addEvent(@RequestBody EventDTO data){
+        Event e = new Event();
+        e.setTime(data.getTime());
+        e.setDate(data.getDate());
+        e.setPrice(data.getPrice());
+        Hall h =hallService.findById(data.getHallId());
+        e.setHall(h);
+        e.setShow(showService.findById(data.getShowId()));
+        e.setVenue(h.getVenue());
+        e.setEventType(EventType.PERFORMANCE);
+        return ResponseEntity.ok(eventService.addEvent(e));
+    }
 
     @RequestMapping(value="/findById", method = RequestMethod.POST)
     public ResponseEntity<?> findById(@RequestBody EntityID entityID) {
@@ -69,5 +100,13 @@ public class EventController {
         return ResponseEntity.ok(eventService.getEventsOfVenueByShow(venueShowDTO.getVenueId(), venueShowDTO.getShowId()));
     }
 
+    @RequestMapping(value="/discount",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<?> setOnDiscount(@RequestBody DiscountDTO data){
+        DiscountEvent de = new DiscountEvent();
+        de.setEvent(eventService.getEventById(data.getEventId()));
+        de.setNewPrice(data.getPrice());
+        return ResponseEntity.ok(discountEventService.addDiscount(de));
+    }
 
 }

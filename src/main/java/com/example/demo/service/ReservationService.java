@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.entity.Event;
 import com.example.demo.domain.entity.Reservation;
 import com.example.demo.model.dto.ReservationDTO;
 
@@ -14,6 +15,8 @@ public interface ReservationService {
     Reservation findById(Long reservationId);
 
     List<Reservation> findAllByOwner(Long ownerId);
+
+    List<Reservation> findReservationHistory(String username);
 }
 
 

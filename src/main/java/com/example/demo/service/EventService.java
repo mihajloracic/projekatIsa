@@ -16,6 +16,6 @@ public interface EventService {
 
     List<Event> getEventsOfVenueByShow(Long venueId, Long showId);
 
-    void addEvent(Event e);
+    Event addEvent(Event e);
 
 }

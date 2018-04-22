@@ -28,6 +28,11 @@ public class ShowServiceImpl implements ShowService{
     }
 
     @Override
+    public List<Show> getAll() {
+        return showRepository.findAll();
+    }
+
+    @Override
     public Show findById(Long id) {
         return showRepository.findOne(id);
     }

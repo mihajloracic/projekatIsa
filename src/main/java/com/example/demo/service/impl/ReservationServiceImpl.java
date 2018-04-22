@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -86,5 +87,17 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.findByOwner(ownerId);
     }
 
-
+    @Override
+    public List<Reservation> findReservationHistory(String username) {
+        List<Reservation> list = reservationRepository.findAll();
+        List<Reservation> ret = new ArrayList<>();
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        for(Reservation r: list){
+            if(r.getReservationOwner().getUsername().equals(username) && r.getEvent().getDate().compareTo(sqlDate) < 0){
+                ret.add(r);
+            }
+        }
+        return ret;
+    }
 }

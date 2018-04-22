@@ -18,8 +18,14 @@ public class DiscountEventService {
         return  discountEventRepository.findOne(id).getEvent();
     }
 
-    public void addDiscount(DiscountEvent de) {
-        discountEventRepository.save(de);
+    public DiscountEvent addDiscount(DiscountEvent de) {
+        DiscountEvent existing = discountEventRepository.findByEvent(de.getEvent());
+        if(existing!= null){
+            existing.setNewPrice(de.getNewPrice());
+            return discountEventRepository.save(existing);
+        }else{
+            return discountEventRepository.save(de);
+        }
     }
 
     public List<DiscountEvent> getAll(){

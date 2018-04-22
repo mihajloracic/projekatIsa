@@ -25,6 +25,14 @@ window.onload = function () {
             });
     }});
 
+    $.ajax({"url": "/api/grade/venue/"+id
+        , "method": "GET"
+        , success: function(result){
+            $("#averageGrade")[0].innerHTML = 'Prosečna ocena: ' + result;
+
+        }});
+
+
     authorities = getUserAuthorities();
     if(authorities.includes("ADMIN")){
         var elements = document.getElementsByClassName("ADMIN")
@@ -41,16 +49,16 @@ window.onload = function () {
         , success: function (result) {
 
             var arrayLength = result.length;
-            var str = "";
+            var str = "<h2>Karte na popustu:</h2>";
             for (var i = 0; i < arrayLength; i++) {
-                str += "<div class=\"col-sm-5\">\n" +
+                str += "<div class=\"col-sm-10\">\n" +
                     "        <ul class=\"list-group\">\n" +
                     "        <li class=\"list-group-item\">" +
-                    result[i].event.show.name + " " + result[i].event.time + " " + result[i].event.date +
+                    result[i].event.show.name + " ("+result[i].newPrice + " din) " + result[i].event.time + " " + result[i].event.date +
                     "</li>\n" +
                     "        </ul>\n" +
                     "        </div>\n" +
-                    "        <div class=\"col-sm-1\">\n" +
+                    "        <div class=\"col-sm-2\">\n" +
                     "        <button type=\"button\"" +
                     "id="+result[i].id+
                     " class=\"reserveDiscount btn btn-success\" >Rezerviši</button>\n" +
@@ -65,7 +73,7 @@ window.onload = function () {
     $(document).on('click', '.reserveDiscount', function (e)  {
         e.preventDefault();
 
-        alert(event.target.id)
+
 
 
         var data = {
@@ -81,7 +89,7 @@ window.onload = function () {
             , data: JSON.stringify(data)
             , success: function (result) {
 
-
+                alert('Mesto uspešno rezervisano');
             }
         });
     });

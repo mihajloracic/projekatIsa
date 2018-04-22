@@ -3,10 +3,7 @@ package com.example.demo.domain.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"username", "grade", "show_id"})}
-)
-public class ShowGrade {
+public class VenueGrade {
 
     @Id
     @Column(name = "id", columnDefinition = "serial")
@@ -18,9 +15,9 @@ public class ShowGrade {
     private double grade;
 
     @ManyToOne
-    private Show show;
+    private Venue venue;
 
-    public ShowGrade() {
+    public VenueGrade() {
     }
 
     public long getId() {
@@ -47,11 +44,11 @@ public class ShowGrade {
         this.grade = grade;
     }
 
-    public Show getShow() {
-        return show;
+    public Venue getVenue() {
+        return venue;
     }
 
-    public void setShow(Show show) {
-        this.show = show;
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 }
