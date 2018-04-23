@@ -1,6 +1,15 @@
 window.onload = function () {
     var id = getUrlParameter("id");
 
+    authorities = getUserAuthorities();
+    if(authorities.includes("VENUEADMIN")){
+        var elements = document.getElementsByClassName("ADMIN")
+
+        for (var i = 0; i < elements.length; i++){
+            elements[i].style.display = "block";
+        }
+    }
+
     $("#editButton").click (function(){
         window.location = "/api/changeVenue.html?id=" + id;
     })

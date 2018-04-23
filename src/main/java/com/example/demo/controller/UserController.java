@@ -44,6 +44,8 @@ public class UserController {
     @RequestMapping(value="/userDetails", method = RequestMethod.GET)
     @ResponseBody
     public String currentUserDetails(Principal principal) {
+        if(principal==null)
+            return "";
         User u = userService.findByUsername(principal.getName());
         return u.getAuthorities();
     }

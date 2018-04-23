@@ -1,14 +1,14 @@
 window.onload = function () {
 
-    // authorities = getUserAuthorities();
-    // if(!authorities.includes("ADMIN")){
-    //     var elements = document.getElementsByClassName("ADMIN")
-    //
-    //     for (var i = 0; i < elements.length; i++){
-    //         elements[i].style.display = "block";
-    //     }
-    //
-    // }
+    authorities = getUserAuthorities();
+    if(authorities.includes("VENUEADMIN")){
+        var elements = document.getElementsByClassName("ADMIN")
+
+        for (var i = 0; i < elements.length; i++){
+            elements[i].style.display = "block";
+        }
+
+    }
 
     //INICIJALIZACIJA JUMBOTRONA I MAPE
     var id = getUrlParameter("id");

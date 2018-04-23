@@ -7,7 +7,9 @@ import com.example.demo.service.EventService;
 import com.example.demo.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/show")
@@ -30,6 +32,7 @@ public class ShowController {
         return ResponseEntity.ok(showService.getMoviesFromCinemaEvents(entityID.getId()));
     }
 
+    @PreAuthorize("hasRole('VENUEADMIN')")
     @RequestMapping(value="/updateByProjectionId/{id}", method = RequestMethod.POST)
     public ResponseEntity<?> updateByProjectionId(@PathVariable Long id, @RequestBody Show data) {
         Event event = eventService.getEventById(id);
@@ -43,5 +46,19 @@ public class ShowController {
         showService.addShow(existing);
         return ResponseEntity.ok(existing);
     }
+
+    @PreAuthorize("hasRole('VENUEADMIN')")
+    @RequestMapping(value="/add", method = RequestMethod.POST)
+    public ResponseEntity<?> add(@RequestBody Show data) {
+        Show show = new Show();
+        show.setActors(data.getActors());
+        show.setDescription(data.getDescription());
+        show.setGenre(data.getGenre());
+        show.setName(data.getName());
+        show.setLength(data.getLength());
+        show.setDirector(data.getDirector());
+        return ResponseEntity.ok(showService.addShow(show));
+    }
+
 
 }

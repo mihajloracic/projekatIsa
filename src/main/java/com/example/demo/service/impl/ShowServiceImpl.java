@@ -38,7 +38,7 @@ public class ShowServiceImpl implements ShowService{
     }
 
     @Override
-    public void addShow(Show s) {
-        showRepository.save(s);
+    public Show addShow(Show s) {
+        return showRepository.save(s);
     }
 }

@@ -1,5 +1,11 @@
 window.onload = function () {
 
+    authorities = getUserAuthorities();
+    if(!authorities.includes("VENUEADMIN")){
+       window.location = "/";
+
+    }
+
     var id = getUrlParameter("id");
 
     $.ajax({

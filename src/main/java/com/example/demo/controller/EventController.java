@@ -14,6 +14,7 @@ import com.example.demo.service.impl.DiscountEventService;
 import com.example.demo.service.impl.HallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class EventController {
     @Autowired
     DiscountEventService discountEventService;
 
+    @PreAuthorize("hasRole('VENUEADMIN')")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addEvent(@RequestBody EventDTO data){
         Event e = new Event();
@@ -56,6 +58,7 @@ public class EventController {
         return ResponseEntity.ok(eventService.getEventById(entityID.getId()));
     }
 
+    @PreAuthorize("hasRole('VENUEADMIN')")
     @RequestMapping(value="/update/{id}", method = RequestMethod.POST)
     public ResponseEntity<?> update(@PathVariable Long id,@RequestBody Event data) {
         Event existing = eventService.getEventById(id);
@@ -100,6 +103,7 @@ public class EventController {
         return ResponseEntity.ok(eventService.getEventsOfVenueByShow(venueShowDTO.getVenueId(), venueShowDTO.getShowId()));
     }
 
+    @PreAuthorize("hasRole('VENUEADMIN')")
     @RequestMapping(value="/discount",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<?> setOnDiscount(@RequestBody DiscountDTO data){

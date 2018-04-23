@@ -12,6 +12,6 @@ public interface ShowService {
 
     public Show findById(Long id);
 
-    public void addShow(Show s);
+    Show addShow(Show s);
 
 }

@@ -10,6 +10,7 @@ import com.example.demo.service.impl.HallService;
 import com.example.demo.service.impl.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
@@ -87,6 +88,7 @@ public class VenueController  {
 
     @RequestMapping(value="update/{id}",method = RequestMethod.POST)
     @ResponseBody
+    @PreAuthorize("hasRole('VENUEADMIN')")
     public ResponseEntity<?> update(@PathVariable("id") long id,@RequestBody Venue data){
         Venue existing = venueService.findById(id);
         existing.setAddress(data.getAddress());
