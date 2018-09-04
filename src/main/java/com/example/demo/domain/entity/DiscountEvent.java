@@ -1,6 +1,5 @@
 package com.example.demo.domain.entity;
 
-import com.oracle.jrockit.jfr.EventDefinition;
 
 import javax.persistence.*;
 
